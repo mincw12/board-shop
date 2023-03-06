@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="author" content="mingo">
+    <meta name="date" content="">
+    <meta name="description" content="">
+    <link rel="stylesheet" href="/assets/css/guinView.css">
+    <link rel="shortcut icon" href="/assets/img/logo/Fab.ico" type="image/x-icon">
+    <script src="https://code.jquery.com/jquery-3.6.3.js"
+            integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
+            crossorigin="anonymous">
+    </script>
+
+    <title>구인글</title>
+</head>
+
+<div th:include="header.html"></div>
+
+<!--<style th:background="url(/assets/img/background/생산.건설.노무.jpg)"/>-->
+
+<body>
+
+<div class="GuinView-div">
+
+    <div class="GuinView-title-div">
+
+        <h3 class="GuinView-title">< [[${GuinView.GBTitle}]] ></h3>
+
+    </div>
+
+    </br></br></br></br>
+
+    <div class="Guin-hits-div">
+
+        <h6 class="hits">조회수: [[${GuinView.GBHit}]]</h6>
+
+    </div>
+
+    <div class="GuinView-table-div">
+
+        <div class="GuinView-t01-div">
+
+            <!-- 작성글의 01번째 상세 정보 -->
+            <div class="GuinView-0101div">
+
+                <table class="GuinView-0101t">
+
+                    <tr class="GuinView-tr">
+                        <th class="GuinView-th">글번호</th>
+                        <td class="GuinView-td">[[${GuinView.GBNum}]]</td>
+                    </tr>
+
+                    <tr class="GuinView-tr">
+                        <th class="GuinView-th">규모</th>
+                        <td class="GuinView-td">[[${GuinView.GBScale}]]</td>
+                    </tr>
+                    <tr class="GuinView-tr">
+                        <th class="GuinView-th">작성자</th>
+                        <td class="GuinView-td">[[${GuinView.GBId}]]</td>
+                    </tr>
+                    <tr class="GuinView-tr">
+                        <th class="GuinView-th">요구 학력</th>
+                        <td class="GuinView-td">[[${GuinView.GBEdu}]]</td>
+                    </tr>
+                    <tr class="GuinView-tr">
+                        <th class="GuinView-th">급여</th>
+                        <td class="GuinView-td">[[${GuinView.GBPay}]]&nbsp 만원</td>
+                    </tr>
+
+                </table>
+
+            </div>
+
+
+            <div class="GuinView-0102div">
+
+                <table class="GuinView-0102t">
+
+                    <tr class="GuinView-tr">
+                        <th class="GuinView-th">근무 기간</th>
+                        <td class="GuinView-td">[[${GuinView.GBPeriod}]]</td>
+                    </tr>
+                    <tr class="GuinView-tr">
+                        <th class="GuinView-th">하는 일</th>
+                        <td class="GuinView-td">[[${GuinView.GBCategory}]]</td>
+                    </tr>
+                    <tr class="GuinView-tr">
+                        <th class="GuinView-th">근무 요일</th>
+                        <td class="GuinView-td">[[${GuinView.GBWorkDate}]]</td>
+                    </tr>
+                    <tr class="GuinView-tr">
+                        <th class="GuinView-th">출근 시간</th>
+                        <td class="GuinView-td">[[${GuinView.GBWorkStart}]]</td>
+                    </tr>
+                    <tr class="GuinView-tr">
+                        <th class="GuinView-th">근무 시간</th>
+                        <td class="GuinView-td">[[${GuinView.GBWorkTime}]]&nbsp 시간</td>
+                    </tr>
+
+                </table>
+
+            </div>
+
+
+            <div class="GuinView-0103div">
+
+                <table class="GuinView-0103t">
+
+                    <tr class="GuinView-tr">
+                        <th class="GuinView-th">자격증1</th>
+                        <td class="GuinView-td">[[${GuinView.GBLicense1}]]</td>
+                    </tr>
+                    <tr class="GuinView-tr">
+                        <th class="GuinView-th">자격증2</th>
+                        <td class="GuinView-td">[[${GuinView.GBLicense2}]]</td>
+                    </tr>
+                    <tr class="GuinView-tr">
+                        <th class="GuinView-th">자격증3</th>
+                        <td class="GuinView-td">[[${GuinView.GBLicense3}]]</td>
+                    </tr>
+
+                    <tr class="GuinView-tr">
+                        <th class="GuinView-th">마감일</th>
+                        <td class="GuinView-td">[[${GuinView.GBCloseDate}]]</td>
+                    </tr>
+                    <tr class="GuinView-tr">
+                        <th class="GuinView-th">주소</th>
+                        <td class="GuinView-td">[[${GuinView.GBAddr}]]</td>
+                    </tr>
+
+                </table>
+            </div>
+        </div>
+
+        <!-- 02번째 : 내용 -->
+        <div class="GuinView-t02-div">
+
+            <table class="GuinView-table02">
+
+                <tr class="GuinView-tr">
+                    <th class="GuinView-th">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        내용
+                    </th>
+                    <td class="GuinView-td">
+                        <div class="guin-content">
+                            [[${GuinView.GBContent}]]
+                        </div>
+                    </td>
+                </tr>
+
+            </table>
+
+        </div>
+
+        <!-- 03번째 : 첨부 파일 1,2,3 -->
+        <div class="GuinView-t03-div">
+
+            <table class="GuinView-file-table01">
+                <tr class="GuinView-tr">
+                    <th class="GuinView-th" rowspan="3">참고자료</th>
+                    <td class="GuinView-td">
+                        <span th:if="${GuinView.GBDatafile1Name ne ''}">
+                        <a th:href="@{/guinfile/{aa}(aa=${GuinView.GBDatafile1Name})}" download>
+                            [[${GuinView.GBDatafile1Name}]]</a></span>
+
+                        <span th:if="${GuinView.GBDatafile2Name ne ''}">
+                            &nbsp;&nbsp;/&nbsp;&nbsp;
+                       <a th:href="@{/guinfile/{aa}(aa=${GuinView.GBDatafile2Name})}" download>
+                            [[${GuinView.GBDatafile2Name}]]</a></span>
+
+                        <span th:if="${GuinView.GBDatafile3Name ne ''}">
+                            &nbsp;&nbsp;/&nbsp;&nbsp;
+                       <a th:href="@{/guinfile/{aa}(aa=${GuinView.GBDatafile3Name})}" download>
+                            [[${GuinView.GBDatafile3Name}]]</a></span>
+
+                    </td>
+                </tr>
+            </table>
+
+            <!--<table class="GuinView-file-table02">
+                <tr class="GuinView-tr">
+                    <th class="GuinView-th"></th>
+                    <td class="GuinView-td">
+                        <a th:if="${GuinView.GBDatafile2Name ne null}" th:href="@{/guinfile/{aa}(aa=${GuinView.GBDatafile2Name})}" download>[[${GuinView.GBDatafile2Name}]]</a>
+                    </td>
+                </tr>
+            </table>
+
+            <table class="GuinView-file-table03">
+                <tr class="GuinView-tr">
+                    <th class="GuinView-th"></th>
+                    <td class="GuinView-td">
+                        <a th:if="${GuinView.GBDatafile2Name ne null}" th:href="@{/guinfile/{aa}(aa=${GuinView.GBDatafile3Name})}" download>[[${GuinView.GBDatafile3Name}]]</a>
+                    </td>
+                </tr>
+            </table>-->
+
+        </div>
+
+
+
+        <!--    <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>-->
+
+        <div class="Guin-button-div">
+            <button class="Guin-btn" th:if="${session.login ne null && session.login.MId eq GuinView.GBId}"
+                    th:onclick="|location.href='@{GuinModify(GBNum=${GuinView.GBNum})}'|">
+                <i class="fa-solid fa-file-pen"></i>수정
+            </button>
+
+            <button class="Guin-btn"
+                    th:if="${(session.login ne null && session.login.MId eq GuinView.GBId )||(session.login ne null && session.login.MId eq 'admin')}"
+                    th:onclick="|location.href='@{GuinDelete(GBNum=${GuinView.GBNum})}'|">
+                <i class="fa-solid fa-trash"></i>삭제
+            </button>
+
+            <button class="Guin-btn" th:if="${session.login ne null && session.login.MId eq GuinView.GBId && GuinView.GBDeadline eq 0}"
+                    th:onclick="|location.href='@{closeGuinPost(GBNum=${GuinView.GBNum})}'|">
+                <i class="fa-solid fa-file-pen"></i>마감
+            </button> <!-- 마감 버튼 디테일 수저어저정ㅇ -->
+
+        </div>
+
+    </div>
+
+    <div class="guin-cmt-div"> <!-- 댓글 전체 div -->
+
+        <div class="guin-cmt-write"> <!-- 댓글 작성창 -->
+            <input type="hidden" th:value="${GuinView.GBNum}" id="GCBNum"/>
+            <input type="hidden" th:if="${session.login ne null}" th:value="${session.login.MId}" id="GCWriter"/>
+
+            <div class="cmt-write-div">
+
+                <textarea rows="3" cols="30" id="GCContent" ></textarea>
+
+                <button onclick="cmtWrite()" class="cmt-btn">
+
+                    <i class="fa-solid fa-pen"></i>
+
+                </button>
+
+            </div>
+
+            <br/>
+
+            <!-- 댓글 리스트 -->
+            <div id="cmtArea" class="guin-cmtList-div">
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+<input type="hidden" th:if="${session.login ne null}" id="checkId" th:value="${session.login.MId}"/>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.3.js"
+        integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
+        crossorigin="anonymous"></script>
+<script>
+    let GCBNUM=[[${GuinView.GBNum}]];
+    $(document).ready(function(){
+        $.ajax({
+            type : "POST",
+            url : "GuinCommentList",
+            data : {
+                "GCBNum" : GCBNUM
+            },
+            dataType : "json",
+            success : function(list){
+                commentList(list);
+            },
+            error : function(){
+                alert("댓글 불러오기 통신 실패!");
+            }
+        });
+    });
+
+    // 댓글 불러오기 함수
+    function commentList(list){
+        let GCWriter = $("#GCWriter").val();
+        let checkId=$("#checkId").val();
+        let output = "<table class='guin-cmtList'>";
+        let check = false;
+        for(let i in list){
+            if(GCWriter==null) {
+                output += "<tr style=\" text-shadow: 0px 0px 10px black;\n" +
+                    "         color: transparent;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;\" >";
+
+            }else{
+                output+="<tr>";
+
+            }
+            output += "<td>" + "<img src='/profile/" + list[i].gcprofileName + "' width='30px' class='guin-cmt-profile'/>" + "</td>";
+
+            output += "<td><span>" + list[i].gcwriter + "</span></td>";
+
+            output += "<td class='guin-cmt-date'>" + list[i].gcdate + "</td>";
+            if(list[i].gcwriter==checkId) {
+                output += "<td rowspan='2' class=\"GuinView-td\"><button onclick='GuinCommentDelete(" + list[i].gcnum + ", " + list[i].gcbnum + ")' class='cmt-btn'><i class=\"fa-regular fa-circle-xmark\"></i></button></td>";
+            }else{
+                output+="<td rowspan='2' class=\"GuinView-td\"></td>";
+            }
+            output += "</tr>";
+
+            if(GCWriter==null) {
+                output += "<tr style=\" text-shadow: 0px 0px 10px black;\n" +
+                    "         color: transparent;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;\" >";
+
+            }else{
+                output+="<tr>";
+
+            }
+            output +=   "<td colspan='3' class='GuinView-td'" +
+                "id='guin-cmt-content'>"+list[i].gccontent+"</td></tr>";
+
+        }
+        output += "</table>";
+
+        document.getElementById("cmtArea").innerHTML = output;
+
+    }
+
+    // 댓글 입력
+    function cmtWrite(){
+        let GCWriter = $("#GCWriter").val();
+        let GCContent = $("#GCContent").val();
+        let GCBNum = $("#GCBNum").val();
+        if(GCWriter != null){
+            $.ajax({
+                type : "POST",
+                url : "GuinCommentWrite",
+                data : {
+                    "GCBNum" : GCBNum,
+                    "GCWriter" : GCWriter,
+                    "GCContent" : GCContent
+                },
+                dataType : "json",
+                success : function(list){
+                    commentList(list);
+                    $("#GCContent").val("");
+
+                },
+                error : function(){
+                    alert('댓글 작성 통신 실패!');
+                }
+            });}
+        else{
+            alert("로그인후 사용해주세요!");
+            location.href="/Login";
+        }
+    }
+
+    function GuinCommentDelete(GCNum, GCBNum){
+
+        $.ajax({
+            type : "POST",
+            url : "GuinCommentDelete",
+            data : {
+                "GCBNum" : GCBNum,
+                "GCNum" : GCNum
+            },
+            dataType : "json",
+            success : function(list){
+                commentList(list);
+            },
+            error : function(){
+                alert("댓글 삭제 통신 실패!");
+            }
+        });
+
+
+    }
+
+
+
+
+</script>
+
+</html>

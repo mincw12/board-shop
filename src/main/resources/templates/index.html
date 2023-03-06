@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="author" content="kjb">
+
+
+    <link rel="stylesheet" href="/assets/css/index.css">
+    <link rel="shortcut icon" href="/assets/img/logo/Fab.ico" type="image/x-icon">
+
+    <!-- 부트스트랩 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+
+    <title>ALABA</title><!-- -->
+
+</head>
+
+<div th:include="header.html" class="header-div"></div>
+
+<body>
+
+
+<div class="index-div"> <!-- index 전체 div -->
+
+    <!-- 구인 미리보기 -->
+    <div class="guin-summary-board" >
+        <table class="guin-summary-table">
+            <caption><a href="GuinList">구인 보기</a></caption>
+            <thead class="guin-summary-thead">
+            <tr class="guin-summary-tr">
+                <th class="guin-summary-th"> 제목</th>
+                <th class="guin-summary-th"> 작성자</th>
+                <th class="guin-summary-th"> 작성일</th>
+                <th class="guin-summary-th">
+                    <a href="GuinList" class="board-list-plus"><i class="fa-regular fa-square-plus"></i></a>
+                </th>
+            </tr>
+            </thead>
+
+            <tbody class="guin-summary-tbody" id="guinlist5">
+
+            </tbody>
+
+        </table>
+    </div>
+
+    <!-- 구직 미리보기 -->
+    <div class="job-summary-board">
+        <table class="job-summary-table">
+            <caption><a href="JobList">구직 보기</a></caption>
+            <thead class="job-summary-thead">
+            <tr class="job-summary-tr">
+                <th class="job-summary-th"> 제목</th>
+                <th class="job-summary-th">작성자</th>
+                <th class="job-summary-th">작성일</th>
+                <th class="job-summary-th">
+                    <a href="JobList" class="board-list-plus"><i class="fa-regular fa-square-plus"></i></a>
+                </th>
+            </tr>
+            </thead>
+
+            <tbody class="job-summary-tbody" id="Joblist5">
+
+            </tbody>
+
+        </table>
+    </div>
+
+    <!-- 공지 미리보기 -->
+    <div class="notice-summary-board">
+        <table class="notice-summary-table">
+            <caption><a href="NoticeList">공지사항 보기</a></caption>
+            <thead class="notice-summary-thead">
+            <tr class="notice-summary-tr">
+                <th class="notice-summary-th"> 제목</th>
+                <th class="notice-summary-th"> 작성일</th>
+                <th class="notice-summary-th"> 조회수</th>
+                <th class="notice-summary-th">
+                    <a href="NoticeList" class="board-list-plus"><i class="fa-regular fa-square-plus"></i></a>
+                </th>
+            </tr>
+            </thead>
+
+            <tbody class="notice-summary-tbody" id="Noticelist5">
+
+            </tbody>
+
+        </table>
+    </div>
+
+    <div class="notice-summary-board" >
+        <table class="notice-summary-table">
+            <caption><a href="FAQList">문의사항 보기</a></caption>
+            <thead class="notice-summary-thead">
+            <tr class="notice-summary-tr">
+                <th class="notice-summary-th"> 제목</th>
+                <th class="notice-summary-th"> 작성자</th>
+                <th class="notice-summary-th"> 작성일</th>
+                <th class="notice-summary-th">
+                    <a href="FAQList" class="board-list-plus"><i class="fa-regular fa-square-plus"></i></a>
+                </th>
+            </tr>
+            </thead>
+
+            <tbody class="notice-summary-tbody" id="FAQlist5">
+
+            </tbody>
+
+        </table>
+    </div>
+</div>
+
+<div th:include="chatButton"></div>
+
+</body>
+<script
+        src="https://code.jquery.com/jquery-3.6.3.js"
+        integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
+        crossorigin="anonymous"></script>
+
+<script>
+    $.ajax({
+        type: "POST",
+        url: "getGuinList5",
+        dataType: "json",
+        success: function (result) {
+            let text = "";
+            for (let i in result) {
+                text += "<tr class=\"guin-summary-tr\">\n"
+                    + "   <td class=\"guin-summary-td\"><a href=\"GuinView?GBNum=" + result[i].gbnum +    "\">" + result[i].gbtitle + "</a></td>\n"
+                    + "<td class=\"guin-summary-td\"><a href=\"OthersView?MId=" + result[i].gbid +    "\">" + result[i].gbid + "</a></td>\n"
+                    + "<td class=\"guin-summary-td\">" + result[i].gbpostDate + "</td>\n"
+                    + "                <td class=\"guin-summary-td\"></td>\n"
+                    + "            </tr>";
+            }
+            $("#guinlist5").html(text);
+        },
+        error: function () {
+
+        }
+
+    });
+</script>
+
+<script>
+    $.ajax({
+        type: "POST",
+        url: "getJobList5",
+        dataType: "json",
+        success: function (result) {
+            let text = "";
+            for (let i in result) {
+                text += "<tr class=\"job-summary-tr\">\n"
+                    + "   <td class=\"job-summary-td\"><a href=\"JobView?JBNum=" + result[i].jbnum +    "\">" + result[i].jbtitle + "</a></td>\n"
+                    + "<td class=\"job-summary-td\"><a href=\"OthersView?MId=" + result[i].jbid +    "\">" + result[i].jbid + "</a></td>\n"
+                    + "<td class=\"job-summary-td\">" + result[i].jbdate + "</td>\n"
+                    + "                <td class=\"job-summary-td\"></td>\n"
+                    + "            </tr>";
+            }
+            $("#Joblist5").html(text);
+        },
+        error: function () {
+
+        }
+
+    });
+</script>
+
+<script>
+    $.ajax({
+        type: "POST",
+        url: "getNoticeList5",
+        dataType: "json",
+        success: function (result) {
+            let text = "";
+            for (let i in result) {
+                text += "<tr class=\"notice-summary-tr\">\n"
+                    + "<td class=\"notice-summary-td\"><a href=\"NoticeView?NoNum=" + result[i].noNum + "\">" + result[i].noTitle + "</a></td>\n"
+                    + "<td class=\"notice-summary-td\">" +  result[i].noDate + "</td>\n"
+                    + "<td class=\"notice-summary-td\">" + result[i].noHit
+                    + "</td>\n"
+                    + "                <td class=\"notice-summary-td\"></td>\n"
+                    + "            </tr>";
+            }
+            $("#Noticelist5").html(text);
+        },
+        error: function () {
+
+        }
+
+    });
+</script>
+
+<script>
+    $.ajax({
+        type: "POST",
+        url: "getFAQList5",
+        dataType: "json",
+        success: function (result) {
+            let text = "";
+            for (let i in result) {
+                text += "<tr class=\"FAQ-summary-tr\">\n"
+                    + "   <td class=\"FAQ-summary-td\"><a href=\"FAQView?FAQNum=" + result[i].faqnum +    "\">" + result[i].faqtitle + "</a></td>\n"
+                    + "<td class=\"FAQ-summary-td\"><a href=\"OthersView?MId=" + result[i].faqwriter +    "\">" + result[i].faqwriter + "</a></td>\n"
+                    + "<td class=\"FAQ-summary-td\">" + result[i].faqdate + "</td>\n"
+                    + "                <td class=\"FAQ-summary-td\"></td>\n"
+                    + "            </tr>";
+            }
+            $("#FAQlist5").html(text);
+        },
+        error: function () {
+
+        }
+
+    });
+</script>
+
+</html>

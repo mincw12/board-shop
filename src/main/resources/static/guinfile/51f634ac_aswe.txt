@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css");
+
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            font-family: "Montserrat", sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .wrapper {
+            width: 100%;
+            height: 160vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #ebecf0;
+            overflow: visible;
+        }
+        .container {
+            border-radius: 10px;
+            box-shadow: -5px -5px 10px #fff, 5px 5px 10px #babebc;
+            position: absolute;
+            width: 1000px;
+            min-height: 1350px;
+            overflow: visible;
+        }
+        form {
+            background: #ebecf0;
+            display: flex;
+            flex-direction: column;
+            padding: 0 50px;
+            height: 100%;
+            justify-content: center;
+            align-items: center;
+        }
+        form input {
+            background: #eee;
+            padding: 16px;
+            margin: 8px 0;
+            width: 85%;
+            border: 0;
+            outline: none;
+            border-radius: 20px;
+            box-shadow: inset 7px 2px 10px #babebc, inset -5px -5px 12px #fff;
+        }
+        button {
+            border-radius: 20px;
+            border: none;
+            outline: none;
+            font-size: 12px;
+            font-weight: bold;
+            padding: 15px 45px;
+            margin: 14px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: transform 80ms ease-in;
+        }
+        .form_btn {
+            box-shadow: -5px -5px 10px #fff, 5px 5px 8px #babebc;
+        }
+        .form_btn:active {
+            box-shadow: inset 1px 1px 2px #babebc, inset -1px -1px 2px #fff;
+        }
+        .overlay_btn {
+            background-color: #ff4b2b;
+            color: #fff;
+            box-shadow: -5px -5px 10px #ff6b3f, 5px 5px 8px #bf4b2b;
+        }
+        .sign-in-container {
+            position: absolute;
+            left: 0;
+            width: 50%;
+            height: 100%;
+            transition: all 0.5s;
+        }
+        .sign-up-container {
+            position: absolute;
+            left: 0;
+            width: 50%;
+            height: 100%;
+            opacity: 0;
+            transition: all 0.5s;
+        }
+        .overlay-left {
+            display: flex;
+            flex-direction: column;
+            padding: 0 50px;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            right: 0;
+            width: 50%;
+            height: 100%;
+            opacity: 0;
+            background-color: #ff4b2b;
+            color: #fff;
+            transition: all 0.5s;
+        }
+        .overlay-right {
+            display: flex;
+            flex-direction: column;
+            padding: 0 50px;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            right: 0;
+            width: 50%;
+            height: 100%;
+            background-color: #ff4b2b;
+            color: #fff;
+            transition: all 0.5s;
+        }
+        .container.right-panel-active .sign-in-container {
+            transform: translateX(100%);
+            opacity: 0;
+        }
+        .container.right-panel-active .sign-up-container {
+            transform: translateX(100%);
+            opacity: 1;
+            z-index: 2;
+        }
+        .container.right-panel-active .overlay-right {
+            transform: translateX(-100%);
+            opacity: 0;
+        }
+        .container.right-panel-active .overlay-left {
+            transform: translateX(-100%);
+            opacity: 1;
+            z-index: 2;
+        }
+        .social-links {
+            margin: 20px 0;
+        }
+        form h1 {
+            font-weight: bold;
+            margin: 0;
+            color: #000;
+        }
+
+        p {
+            font-size: 16px;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+            margin: 20px 0 30px;
+        }
+        span {
+            font-size: 12px;
+            color: #000;
+            letter-spacing: 0.5px;
+            margin-bottom: 10px;
+        }
+        .social-links div {
+            width: 40px;
+            height: 40px;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 5px;
+            border-radius: 50%;
+            box-shadow: -5px -5px 10px #fff, 5px 5px 8px #babebc;
+            cursor: pointer;
+        }
+        .social-links a {
+            color: #000;
+        }
+        .social-links div:active {
+            box-shadow: inset 1px 1px 2px #babebc, inset -1px -1px 2px #fff;
+        }
+
+
+    </style>
+
+    <style type="text/css">* {cursor: url(https://cur.cursors-4u.net/anime/ani-12/ani1152.ani), url(https://cur.cursors-4u.net/anime/ani-12/ani1152.gif), auto !important;}</style><a href="https://www.cursors-4u.com/cursor/2012/01/01/one-piece-going-merry.html" target="_blank" title="One Piece Going Merry"><img src="https://cur.cursors-4u.net/cursor.png" border="0" alt="One Piece Going Merry" style="position:absolute; top: 0px; right: 0px;" /></a>
+</head>
+<body>
+<div class="wrapper">
+    <div class="container">
+        <div class="sign-up-container">
+            <form class="row g-3 needs-validation" action="PMJoin" onsubmit="return checkConfirm();"
+                  method="POST" enctype="multipart/form-data">
+                <h1>회원가입</h1>
+
+                <input type="text" placeholder="아이디" id="PMId" name="PMId" onchange="checkId()" required>
+                <span id="check1"></span>
+                <input type="password" name="PMPw" id="PMPw" onkeyup="pwRegexp()" placeholder="영문, 숫자, 특수문자 혼합" required>
+                <span id="pwResult1"></span>
+                <input type="password" id="checkPw" onkeyup="pwCheck()" placeholder="비밀번호 확인" required/>
+                <span id="pwResult2"></span>
+                <input type="email" id="PMEmail" name="PMEmail" placeholder="이메일 입력" size="40" required/>
+                <span id="confEmail"><input type="button" value="인증번호 발송" onclick="checkEmail()"/></span>
+
+                <input type="text" name="PMName" placeholder="이름 입력" maxlength="4" required/>
+                <input type="date" name="PMBirth" placeholder="생년월일"/>
+                남성<input type="radio" name="PMGender" value="남성"/>
+                여성<input type="radio" name="PMGender" value="여성"/>
+                <input type="text" name="addr1" id="sample6_postcode" placeholder="우편번호" required readonly>
+                <input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기" required readonly><br/>
+                <input type="text" name="addr2" size="40" id="sample6_address" placeholder="주소" required readonly><br/>
+                <input type="text" name="addr3" size="40" id="sample6_detailAddress" placeholder="상세주소">
+                <input type="file" name="PMProfile"/>
+                <select name="PMEdu">
+                    <option value="">학력</option>
+                    <option value="중학교졸 이하">중학교졸 이하</option>
+                    <option value="고등학교졸 이하">고등학교졸 이하</option>
+                    <option value="전문대졸 이하">전문대졸 이하</option>
+                    <option value="대학교졸 이하">대학교졸 이하</option>
+                    <option value="대학원졸 이상">대학원졸 이상</option>
+                </select>
+
+                <input type="date">
+                <button class="form_btn">회원가입</button>
+            </form>
+            <input type="hidden" id="idvalue" value="">
+            <input type="hidden" id="pwvalue" value="">
+            <input type="hidden" id="pwcheckvalue" value="">
+            <input type="hidden" id="emailvalue" value="">
+        </div>
+        <div class="sign-in-container">
+            <form>
+                <h1>로그인</h1>
+                <div class="social-links">
+
+
+                </div>
+                <span>계정사용</span>
+                <input type="email" placeholder="이메일">
+                <input type="password" placeholder="비밀번호">
+
+
+                <button class="form_btn">로그인</button>
+            </form>
+        </div>
+        <div class="overlay-container">
+            <div class="overlay-left">
+                <h1>환영합니다</h1>
+                <p>개인 정보로 로그인하십시오</p>
+                <button id="signIn" class="overlay_btn">Sign In</button>
+            </div>
+            <div class="overlay-right">
+                <h1>환영합니다</h1>
+                <button id="signUp" class="overlay_btn">개인회원가입</button></br>
+
+                <button id="signUp1" class="overlay_btn">기업회원가입</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    const signUpBtn = document.getElementById("signUp");
+    const signInBtn = document.getElementById("signIn");
+    const container = document.querySelector(".container");
+
+    signUpBtn.addEventListener("click", () => {
+        container.classList.add("right-panel-active");
+    });
+    signInBtn.addEventListener("click", () => {
+        container.classList.remove("right-panel-active");
+    });
+</script>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.1.js"
+        integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
+        crossorigin="anonymous"></script>
+<script>
+
+    function pwRegexp() {
+        let memPw = document.getElementById("PMPw").value;
+        let pwResult1 = document.getElementById("pwResult1");
+
+        let num = memPw.search(/[0-9]/);
+        let eng = memPw.search(/[a-z]/);
+        let ENG = memPw.search(/[A-Z]/);
+        let spe = memPw.search(/[`~!@#$%^&*|\\\'\":;\/?]/);
+        let spc = memPw.search(/\s/);
+
+        console.log("num : " + num + " , eng : " + eng + " , spe : " + spe + " , ENG : " + eng);
+
+
+        if (memPw.length < 8 || memPw.length > 16) {
+            pwResult1.style.color = "#ff0000";
+            pwResult1.innerHTML = "비밀번호는 8자리에서 16자리 이내로 입력해주세요.";
+            $('#pwvalue').val('NO');
+
+        } else if (spc >= 0) {
+            pwResult1.style.color = "#ff0000";
+            pwResult1.innerHTML = "비밀번호는 공백없이 입력해주세요.";
+            $('#pwvalue').val('NO');
+
+        } else if (num < 0 || eng < 0 || spe < 0 || ENG < 0) {
+            pwResult1.style.color = "#ff0000";
+            pwResult1.innerHTML = "영문, 숫자, 특수문자를 혼합하여 입력해주세요.";
+            $('#pwvalue').val('NO');
+
+        } else {
+            pwResult1.style.color = "#0000ff";
+            pwResult1.innerHTML = "사용가능한 비밀번호 입니다.";
+            $('#pwvalue').val('YES');
+        }
+
+
+    }
+
+    function pwCheck() {
+
+        let memPw = document.getElementById("PMPw").value;
+        let checkPw = document.getElementById("checkPw").value;
+        let pwResult2 = document.getElementById("pwResult2");
+
+        if (memPw == checkPw) {
+            pwResult2.style.color = "#0000ff";
+            pwResult2.innerHTML = "비밀번호가 일치합니다.";
+            $('#pwcheckvalue').val('YES');
+        } else {
+            pwResult2.style.color = "#ff0000";
+            pwResult2.innerHTML = "비밀번호가 일치하지 않습니다.";
+            $('#pwcheckvalue').val('NO');
+        }
+
+
+    }
+
+
+    function checkConfirm(){
+        let CId= $('#idvalue').val();
+        let CPw= $('#pwvalue').val();
+        let CPwC= $('#pwcheckvalue').val();
+        let CEmail= $('#emailvalue').val();
+        let conf=false;
+        if(CId!='YES'){
+            alert('아이디를 확인해주세요');
+        }
+        else if(CPw!='YES' || CPwC!='YES'){
+            alert('비밀번호를 확인해주세요!.');
+        } else if(CEmail!='YES'){
+            alert('이메일 인증을 진행해주세요.');
+        } else {
+            conf=true;
+        }
+        return conf;
+    }
+
+    function checkId() {
+
+        let PMId = document.getElementById("PMId").value;
+        // location.href = "idCheck?memId=" + memId;
+
+        let check1 = document.getElementById("check1");
+
+        $.ajax({
+            type: "POST",
+            url: "idoverlap",
+            data: {
+                "PMId": PMId
+            },
+            dataType: "text",
+            success: function (result) {
+                if (result == "OK") {
+                    // 사용할 수 있는 아이디일 경우 실행
+                    check1.innerHTML = PMId + "는 사용가능한 아이디";
+                    check1.style.color = "#0000ff";
+                    $('#idvalue').val('YES');
+
+                } else {
+                    // 사용할 수 없는 아이디일 경우 실행
+                    check1.innerHTML = PMId + "는 이미 사용중인 아이디";
+                    check1.style.color = "#ff0000";
+                    $('#idvalue').val('NO');
+                }
+            },
+            error: function () {
+                alert("idoverlap함수 통신실패!");
+
+            }
+
+        });
+
+
+    }
+
+    function checkEmail() {
+
+
+        let PMEmail = $("#PMEmail").val();
+        console.log(PMEmail);
+        $.ajax({
+            type: "POST",
+            url: "PMCheckEmail",
+            data: {"PMEmail": PMEmail},
+            dataType: "text",
+            success: function (uuid) {
+                console.log("이메일 인증번호1 : " + uuid);
+                $("#confEmail").html("<br/><input type='text' id='uuidCheck'/>"
+                    + " <input type='hidden' value='" + uuid + "' id='uuid'/>"
+                    + " <input type='button' value='인증' onclick=\"checkEmail2()\"/>");
+            },
+            error: function () {
+                alert('이메일 인증 통신 실패!');
+            }
+        });
+    }
+
+
+    function checkEmail2() {
+        let uuid = $("#uuid").val();
+        console.log("이메일 인증번호2 : " + uuid);
+
+        let uuidCheck = $("#uuidCheck").val();
+        console.log("입력한 인증번호 : " + uuidCheck);
+
+
+
+        if (uuid == uuidCheck) {
+            alert('인증성공!');
+            $('#emailvalue').val('YES');
+        } else {
+            alert('인증실패!');
+            $('#emailvalue').val('NO');
+        }
+
+    }
+
+</script>
+
+<script
+        src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script>
+    function sample6_execDaumPostcode() {
+        new daum.Postcode({
+            oncomplete: function (data) {
+                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+                // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+                var addr = ''; // 주소 변수
+
+                //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+                if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+                    addr = data.roadAddress;
+                } else { // 사용자가 지번 주소를 선택했을 경우(J)
+                    addr = data.jibunAddress;
+                }
+
+
+                // 우편번호와 주소 정보를 해당 필드에 넣는다.
+                document.getElementById('sample6_postcode').value = data.zonecode;
+                document.getElementById("sample6_address").value = addr;
+                // 커서를 상세주소 필드로 이동한다.
+                document.getElementById("sample6_detailAddress").focus();
+            }
+        }).open();
+    }
+</script>
+
+</html>

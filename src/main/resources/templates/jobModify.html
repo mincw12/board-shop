@@ -1,0 +1,205 @@
+
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta name="author" content="mingo">
+  <meta name="date" content="">
+  <meta name="description" content="">
+  <link rel="stylesheet" href="assets/css/GuinWrite.css">
+  <link rel="shortcut icon" href="/assets/img/logo/Fab.ico" type="image/x-icon">
+  <title>수정</title>
+</head>
+
+<div th:include="header.html"></div>
+
+<style>
+  input[type="number"]::-webkit-outer-spin-button,
+  input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+  }
+</style>
+<body>
+
+<div class="ghost-GuinWriteForm01">
+  <table>
+    <tr>
+      <th></th>
+      <td></td>
+    </tr>
+  </table>
+</div>
+
+
+<div class="GuinWriteForm-table-div">
+
+  <div class="ghost-GuinWriteForm02">
+    <table>
+      <tr>
+        <th></th>
+        <td></td>
+      </tr>
+    </table>
+  </div>
+
+<form action="JobModify" method="post" enctype="multipart/form-data">
+  <input type="hidden" name="JBNum" th:value="${JobModify.JBNum}" />
+
+
+  <table class="GuinWriteForm-table">
+    <caption class="GuinWriteForm-table-caption">구직글 수정</caption>
+
+    <tr class="GuinWriteForm-tr">
+      <th class="GuinWriteForm-th">글제목</th>
+      <td class="GuinWriteForm-td"><input type="text" name="JBTitle" th:value="${JobModify.JBTitle}"></td>
+    </tr>
+
+    <tr class="GuinWriteForm-tr">
+      <th class="GuinWriteForm-th">작성자</th>
+      <td class="GuinWriteForm-td">
+        <input type="text" name="JBId" th:value="${JobModify.JBId}" readonly></td>
+    </tr>
+
+    <tr class="GuinWriteForm-tr">
+      <th class="GuinWriteForm-th">학력</th>
+      <td class="GuinWriteForm-td">
+        <select name="JBEdu">
+          <option value="">요구학력</option>
+          <option value="중학교졸이상">중학교졸 이상</option>
+          <option value="고등학교졸이상">고등학교졸 이상</option>
+          <option value="전문대졸이상">전문대졸 이상</option>
+          <option value="대학교졸이상">대학교졸 이상</option>
+          <option value="대학원졸이상">대학원졸 이상</option>
+        </select>
+      </td>
+    </tr>
+
+    <tr class="GuinWriteForm-tr">
+      <th class="GuinWriteForm-th">글내용</th>
+      <td class="GuinWriteForm-td"><textarea name="JBContent" th:text="${JobModify.JBContent}"></textarea></td>
+    </tr>
+
+    <tr class="GuinWriteForm-tr">
+      <th class="GuinWriteForm-th">희망 급여</th>
+      <td class="GuinWriteForm-td"><input type="number" name="JBPay" th:value="${JobModify.JBPay}"></td>
+    </tr>
+
+    <tr class="GuinWriteForm-tr">
+      <th class="GuinWriteForm-th">희망 근무기간</th>
+      <td class="GuinWriteForm-td">
+        <input type="radio" name="JBPeriod" value="단기"/>단기
+        <input type="radio" name="JBPeriod" value="장기"/>장기
+
+      </td>
+    </tr>
+
+    <tr class="GuinWriteForm-tr">
+      <th class="GuinWriteForm-th">일유형</th>
+      <td class="GuinWriteForm-td">
+        <select name="JBCategory" style="width: 200px">
+          <option value="">일유형</option>
+          <option value="음식점">음식점</option>
+          <option value="배달">배달</option>
+          <option value="잡일">잡일</option>
+          <option value="물류">물류</option>
+          <option value="학원">학원</option>
+          <option value="기타">기타</option>
+        </select>
+      </td>
+    </tr>
+
+    <tr class="GuinWriteForm-tr">
+      <th class="GuinWriteForm-th">근무 요일</th>
+      <td class="GuinWriteForm-td">
+        월<input type="checkbox" name="JBWorkDate" value="월"/>
+        화<input type="checkbox" name="JBWorkDate" value="화"/>
+        수<input type="checkbox" name="JBWorkDate" value="수"/>
+        목<input type="checkbox" name="JBWorkDate" value="목"/>
+        금<input type="checkbox" name="JBWorkDate" value="금"/>
+        토<input type="checkbox" name="JBWorkDate" value="토"/>
+        일<input type="checkbox" name="JBWorkDate" value="일"/></td>
+    </tr>
+
+
+    <tr class="GuinWriteForm-tr">
+      <th class="GuinWriteForm-th">출근 시간</th>
+      <td class="GuinWriteForm-td">
+        <input type="text" name="JBWorkStart" th:value="${JobModify.JBWorkStart}"></td>
+    </tr>
+
+    <tr class="GuinWriteForm-tr">
+      <th class="GuinWriteForm-th">근무 시간</th>
+      <td class="GuinWriteForm-td"><input type="number" name="JBWorkTime" th:value="${JobModify.JBWorkTime}"></td>
+    </tr>
+
+    <tr class="GuinWriteForm-tr">
+      <th class="GuinWriteForm-th">자격증1</th>
+      <td class="GuinWriteForm-td"><input type="text" name="JBLicense1" th:value="${JobModify.JBLicense1}"></td>
+    </tr>
+
+    <tr class="GuinWriteForm-tr">
+      <th class="GuinWriteForm-th">자격증2</th>
+      <td class="GuinWriteForm-td"><input type="text" name="JBLicense2" th:value="${JobModify.JBLicense2}"></td>
+    </tr>
+
+    <tr class="GuinWriteForm-tr">
+      <th class="GuinWriteForm-th">자격증3</th>
+      <td class="GuinWriteForm-td"><input type="text" name="JBLicense3" th:value="${JobModify.JBLicense3}"></td>
+    </tr>
+
+    <tr class="GuinWriteForm-tr">
+      <th class="GuinWriteForm-th">선호지역1</th>
+      <td class="GuinWriteForm-td"><input type="text" name="JBAddr1" th:value="${JobModify.JBAddr1}"></td>
+    </tr>
+
+    <tr class="GuinWriteForm-tr">
+      <th class="GuinWriteForm-th">선호지역2</th>
+      <td class="GuinWriteForm-td"><input type="text" name="JBAddr2" th:value="${JobModify.JBAddr2}"></td>
+    </tr>
+
+    <tr class="GuinWriteForm-tr">
+      <th class="GuinWriteForm-th">선호지역3</th>
+      <td class="GuinWriteForm-td"><input type="text" name="JBAddr3" th:value="${JobModify.JBAddr3}"></td>
+    </tr>
+
+    <tr class="GuinWriteForm-tr">
+      <th class="GuinWriteForm-th">첨부파일1</th>
+      <td class="GuinWriteForm-td">
+        <input type="file" name="JBDatafile1"/>
+        <input type="hidden" name="JBDatafile1Name" th:value="${JobModify.JBDatafile1Name}"/>
+        </td>
+    </tr>
+
+    <tr class="GuinWriteForm-tr">
+      <th class="GuinWriteForm-th">첨부파일2</th>
+      <td class="GuinWriteForm-td">
+        <input type="file" name="JBDatafile2"/>
+        <input type="hidden" name="JBDatafile2Name" th:value="${JobModify.JBDatafile2Name}"/>
+        </td>
+    </tr>
+
+    <tr class="GuinWriteForm-tr">
+      <th class="GuinWriteForm-th">첨부파일3</th>
+      <td class="GuinWriteForm-td"><input type="file" name="JBDatafile3"/>
+        <input type="hidden" name="JBDatafile3Name" th:value="${JobModify.JBDatafile3Name}"/>
+      </td>
+    </tr>
+
+    <tr class="GuinWriteForm-tr">
+      <th colspan="2"><input type="submit" value="등록"></th>
+    </tr>
+  </table>
+</form>
+</div>
+</body>
+<script
+        src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script>
+
+</script>
+</html>

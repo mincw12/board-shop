@@ -1,0 +1,134 @@
+@font-face {
+    src: url("../fonts/aggro02.ttf");
+    font-family: aggro02;
+}
+
+.NoticeWwrite {
+    background-color: transparent;
+    border: none;
+}
+
+.NoticeWcontent {
+    resize: none; /* 사용자 임의 변경 불가 */
+    width: auto;
+    min-height: 300px;
+
+}
+
+
+/* 구인 게시판 작성 */
+.NoticeWriteForm-table-div {
+    float: left;
+    width : 500px;
+    padding: 1%;
+    font-family: aggro02;
+    color: #a39485;
+    margin-left: 425px;
+}
+
+.NoticeWriteForm-table-caption {
+    font-size: 25px;
+}
+
+.NoticeWriteForm-table {
+    border: 2px #a39485 solid;
+    font-size: .9em;
+    box-shadow: 0 2px 5px rgba(0,0,0,.25);
+    border-collapse: collapse;
+    border-radius: 5px;
+    overflow: hidden;
+    width: 180%;
+    /* 반응형에 적용할 때는 width: 200px로 하면 될 듯 */
+    padding-top: 100px;
+}
+
+.NoticeWriteForm-th {
+    text-align: center;
+    height: 20px;
+}
+
+.NoticeWriteForm-td, #NoticeWriteForm-th {
+    padding: 1em .5em;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.NoticeWriteForm-td {
+    border-bottom: 1px solid rgba(0,0,0,.1);
+    background: #fff;
+}
+
+a {
+    color: #73685d;
+}
+
+.ghost-NoticeWriteForm01 {
+    float: left;
+    padding: 25px;
+}
+
+/*
+.ghost-NoticeWriteForm02 {
+    float: left;
+    padding: 12px;
+}
+*/
+
+input::placeholder {
+    font-family: aggro02;
+}
+
+input[type="text"] {
+    font-family: aggro02;
+}
+
+.NoticeWriteBtn {
+    font-family: aggro02;
+    margin: 10px;
+    font-size: 25px;
+}
+
+.NoticeWtitle {
+    width: 600px;
+    height: 25px;
+    font-size: 15px;
+    border: 0;
+    border-radius: 15px;
+    outline: none;
+    padding-left: 10px;
+    background-color: rgb(233, 233, 233);
+}
+
+
+.NoticeWcontent {
+    width: 600px;
+    height: 25px;
+    font-size: 15px;
+    border: 0;
+    border-radius: 15px;
+    outline: none;
+    padding-left: 10px;
+    background-color: rgb(233, 233, 233);
+    text-align: left;
+    font-family: aggro02;
+}
+
+
+/* 반응형 만들 경우 */
+@media screen and (max-width: 1200px) { /* max-width 가 몇일 때 형태 변할지 지정 */
+
+    .NoticeWriteForm-table {
+        border: 2px #a39485 solid;
+        font-size: .9em;
+        box-shadow: 0 2px 5px rgba(0,0,0,.25);
+        border-collapse: collapse;
+        border-radius: 5px;
+        overflow: hidden;
+        width: 600px;
+        /* 반응형일 때의 테이블 크기*/
+        /* 반응형에 적용할 때는 width: 200px로 하면 될 듯 */
+        padding-top: 100px;
+    }
+
+
+}

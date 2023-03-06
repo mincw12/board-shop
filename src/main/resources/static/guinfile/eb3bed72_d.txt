@@ -1,0 +1,13 @@
+<!-- 
+	[1]prifix="c": 태그를 사용할 때 c가 항상 붙는 접두어가 된다는 의미
+	[2]c를 사용하지 않아도 문법상 오류는 없지만 c를 사용하는 것이 약속된 형태(core)
+	[3]uri: core라이브러리가 존재하는 위치(주소)
+	[4]c태그의 종류
+		-출력태그<c:out>
+		-변수설정 태그 <c:set>
+		-삭제태그 <c:remove>
+		-예외처리 태그 <c:catch>
+		-조건처리 태그 <c:if>, <c:choose>, <c:when>, <c:otherwise>
+		-반복처리 태그 <c:forEach>
+		-페이지처리 태그 <c:import>, <c:redirect>, <c:param>
+ -->

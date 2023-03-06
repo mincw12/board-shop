@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="author" content="mingo">
+    <meta name="date" content="">
+    <meta name="description" content="">
+    <link rel="stylesheet" href="/assets/css/pwChange.css">
+    <link rel="shortcut icon" href="/assets/img/logo/Fab.ico" type="image/x-icon">
+    <title>Title</title>
+</head>
+
+<div th:include="header.html"></div>
+
+<body>
+
+<div class="pwChangeForm-table-div">
+
+    <form action="cmPwChange" method="POST" onsubmit="return checkConfirm();">
+
+        <table class="pwChangeForm-table">
+
+            <input type="hidden" name="MId" th:value="${session.login.MId}">
+
+            <table class="pwChangeForm-table">
+
+                <caption class="pwChangeForm-table-caption">비밀번호 변경</caption>
+
+                <tr class="pwChangeForm-tr">
+                    <th class="pwChangeForm-th">현재 비밀번호</th>
+                    <td class="pwChangeForm-td"><input type="password" name="CMPw" id="CMPw"
+                                                       placeholder="비밀번호 입력(영문, 숫자, 특수문자 혼합)"></td>
+                </tr>
+
+                <tr class="pwChangeForm-tr">
+                    <th class="pwChangeForm-th">새 비밀번호</th>
+                    <td class="pwChangeForm-td"><input type="password" name="newPw" id="newPw" onkeyup="pwRegexp()"
+                                                       placeholder="비밀번호 입력(영문, 숫자, 특수문자 혼합)"/></br>
+                        <span id="pwResult1"></span></td>
+                </tr>
+
+                <tr class="pwChangeForm-tr">
+                    <th class="pwChangeForm-th">새 비밀번호 확인</th>
+                    <td class="pwChangeForm-td">
+                        <input type="password" id="checkPw" onkeyup="pwCheck()"
+                                                       placeholder="비밀번호 확인"/></br>
+                        <span id="pwResult2"></span></td>
+                </tr>
+
+                <tr>
+                    <td colspan="2"><input type="submit" value="변경" style="font-family: aggro02; margin-left: 440px;"/></td>
+                </tr>
+
+            </table>
+
+        </table>
+
+    </form>
+
+</div>
+
+<input type="hidden" id="pwvalue" value="">
+<input type="hidden" id="pwcheckvalue" value="">
+
+</body>
+
+<script src="https://code.jquery.com/jquery-3.6.3.js"
+        integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
+        crossorigin="anonymous"></script>
+<script>
+
+    function pwRegexp() {
+        let memPw = document.getElementById("newPw").value;
+        let pwResult1 = document.getElementById("pwResult1");
+
+        let num = memPw.search(/[0-9]/);
+        let eng = memPw.search(/[a-z]/);
+        let ENG = memPw.search(/[A-Z]/);
+        let spe = memPw.search(/[`~!@#$%^&*|\\\'\":;\/?]/);
+        let spc = memPw.search(/\s/);
+
+
+        if (memPw.length < 8 || memPw.length > 16) {
+            pwResult1.style.color = "#ff0000";
+            pwResult1.innerHTML = "비밀번호는 8자리에서 16자리 이내로 입력해주세요.";
+            $('#pwvalue').val('NO');
+
+        } else if (spc >= 0) {
+            pwResult1.style.color = "#ff0000";
+            pwResult1.innerHTML = "비밀번호는 공백없이 입력해주세요.";
+            $('#pwvalue').val('NO');
+
+        } else if (num < 0 || eng < 0 || spe < 0 || ENG < 0) {
+            pwResult1.style.color = "#ff0000";
+            pwResult1.innerHTML = "영문, 숫자, 특수문자를 혼합하여 입력해주세요.";
+            $('#pwvalue').val('NO');
+
+        } else {
+            pwResult1.style.color = "#0000ff";
+            pwResult1.innerHTML = "사용가능한 비밀번호 입니다.";
+            $('#pwvalue').val('YES');
+        }
+
+    }
+
+    function pwCheck() {
+
+        let memPw = document.getElementById("newPw").value;
+        let checkPw = document.getElementById("checkPw").value;
+        let pwResult2 = document.getElementById("pwResult2");
+
+        if (memPw == checkPw) {
+            pwResult2.style.color = "#0000ff";
+            pwResult2.innerHTML = "비밀번호가 일치합니다.";
+            $('#pwcheckvalue').val('YES');
+        } else {
+            pwResult2.style.color = "#ff0000";
+            pwResult2.innerHTML = "비밀번호가 일치하지 않습니다.";
+            $('#pwcheckvalue').val('NO');
+        }
+
+    }
+
+    function checkConfirm() {
+        let pwCheck = $('#pwcheckvalue').val();
+        let pwValue = $('#pwvalue').val();
+        let conf = false;
+        if (pwCheck != 'YES') {
+            alert('비밀번호가 일치하지않습니다.');
+        } else if (pwValue != 'YES') {
+            alert('비밀번호를 확인해주세요!.');
+        } else {
+            conf = true;
+        }
+        return conf;
+    }
+</script>
+<!--loginfail
+-->
+<script th:if="${pwFail ne null}">
+    alert('[[${pwFail}]]');
+</script>
+</html>

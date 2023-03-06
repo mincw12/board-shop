@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="autor" content="rlawnstj">
+    <meta name="date" content="">
+    <meta name="description" content="">
+    <!-- 아이콘 사용 사이트 -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" rel="stylesheet">
+    <link rel="shortcut icon" href="/assets/img/logo/Fab.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/assets/css/FAQList.css">
+
+    <title>문의사항</title>
+</head>
+
+<div th:include="header.html"></div>
+
+<body>
+
+<div class="FAQList-div">
+
+    <h1 class="FAQ-board-title">문의사항</h1>
+
+    <div class="FAQ-button-div">
+
+        <button onclick="location.href='FAQWrite'" th:if="${session.login ne null}" class="FAQ-write-button">
+            <i class="fa-solid fa-pen-to-square"></i>
+            문의게시글 작성
+        </button>
+
+        <button onclick="location.href='index'" class="FAQ-write-button">
+            <i class="fa-solid fa-house"></i>홈으로
+        </button>
+
+    </div>
+
+    <div class="FAQ-board">
+
+        <table class="FAQ-table">
+            <!--  <caption>문의사항 목록</caption>-->
+            <thead class="FAQ-board-thead">
+            <tr class="FAQ-board-tr">
+                <th class="FAQ-board-th">글번호</th>
+                <th class="FAQ-board-th">제목</th>
+                <th class="FAQ-board-th">작성자</th>
+                <th class="FAQ-board-th">작성일</th>
+                <th class="FAQ-board-th">조회수</th>
+                <th class="FAQ-board-th">답변여부</th>
+            </tr>
+            </thead>
+
+            <tbody class="FAQ-board-tbody" id="FAQListT">
+
+            </tbody>
+
+            <tfoot>
+
+            <tr class="FAQ-board-tr">
+                <td class="FAQ-board-td"></td>
+                <td class="FAQ-board-td"></td>
+
+                <div class="FAQNum-div">
+                    <td class="" id="FAQPage">
+                        <!-- 페이지의 숫자와 뒤로가기, 앞으로가기 -->
+                    </td>
+                </div>
+
+                <td class="FAQ-board-td"></td>
+                <td class="FAQ-board-td"></td>
+
+                <td class="FAQ-board-td">
+                    <div class="page-select-div">
+                        <select id="viewNum" onchange="searchGuin()">
+                            <option value="10" class="pageNum-option" selected>10씩 보기</option>
+                            <option value="15" class="pageNum-option">15씩 보기</option>
+                            <option value="" class="pageNum-option">전체 보기</option>
+                        </select>
+                    </div>
+                </td>
+
+            </tr>
+
+            </tfoot>
+
+        </table>
+
+        <input type="hidden" id="page" value="1">
+
+    </div>
+
+</div>
+
+</body>
+
+<script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
+        crossorigin="anonymous"></script>
+
+<script>
+    $(window).ready(function () {
+        searchGuin();
+    });
+
+    function searchGuin() {
+
+        $.ajax({
+            type: "post",
+            url: "FAQPList",
+            async: false,
+            dataType: 'json',
+            success: function (data) {
+                datapage(data);
+            },
+            error: function () {
+
+            }
+        });
+    }
+
+    function datapage(data) {
+        if (data != "") {
+            let page = $('#page').val();
+            let block = 5;
+
+            // 한 화면에 보여줄 게시글 갯수
+
+            // 전체 게시글 갯수 : 7
+            let bCount = Object.keys(data).length;
+            let limit = $('#viewNum').val();
+            if (limit == "") {
+                limit = bCount;
+            }
+
+            let maxPage = (Math.ceil(bCount / limit));
+
+            if (page > maxPage) {
+                page = maxPage;
+            }
+
+            let startRow = (page - 1) * limit + 1;
+            let endRow = page * limit;
+
+            if (endRow > bCount) {
+                endRow = bCount;
+            }
+
+            let startPage = (((Math.ceil(page / block))) - 1) * block + 1;
+            let endPage = startPage + block - 1;
+
+            if (endPage > maxPage) {
+                endPage = maxPage;
+            }
+
+            let text = '';
+            for (let i = startRow - 1; i < endRow; i++) {
+
+                text += '<tr>\n' +
+                    '                <th class="FAQ-board-th">' + data[i].faqnum + '</th>\n' +
+                    '                <th><a href="FAQView?FAQNum=' + data[i].faqnum + '" class="FAQ-board-th">' + data[i].faqtitle + '</a></th>\n' +
+                    '                <th class="FAQ-board-th"><a href=\"OthersView?MId=' + data[i].faqwriter +    '\"\">' + data[i].faqwriter + '</a></th>\n' +
+                    '                <th class="FAQ-board-th"><p>' + data[i].faqdate + '</p></th>\n' +
+                    '                <th class="FAQ-board-th"><p>' + data[i].faqhit + '</p></th>\n' +
+                    '                <th class="FAQ-board-th">\n';
+
+                if (data[i].faqox == 1) {
+                    text += '<p th:if="${list.FAQOX eq 1}" class="FAQ-answer-ok">\n' +
+                        '                        답변완료\n' +
+                        '                    </p>\n';
+                } else {
+                    text += '                    <p th:if="${list.FAQOX eq 0}" class="FAQ-answer-no">\n' +
+                        '                        답변대기중\n' +
+                        '                    </p>\n';
+                }
+                text += '</th>\n' +
+                    '            </tr>';
+
+            }
+            $('#FAQListT').html(text);
+
+
+            let Pagetext = "<tr><th colspan='6'>";
+            if (page > 1) {
+                Pagetext += "<a href=\"#\" onclick=\"PrevPage();return false;\"><<<</a>&nbsp;&nbsp;";
+            }
+            for (let i = startPage; i <= endPage; i++) {
+                if (i != page) {
+                    Pagetext += "&nbsp;&nbsp;<a href=\"#\" nowPage=\"" + i + "\" onclick=\"setPage($(this).attr('nowPage'));return false;\"  style='color: gray'>" + i + "</a>&nbsp;&nbsp;";
+                } else {
+                    Pagetext += "&nbsp;&nbsp;<span href=\"#\" nowPage=\"" + i + "\" onclick=\"setPage($(this).attr('nowPage'));return false;\"  style='color: black'>" + i + "</span>&nbsp;&nbsp;";
+                }
+            }
+            if (maxPage > page) {
+                Pagetext += "<a href=\"#\"onclick=\"NextPage();return false;\">>>></a>&nbsp;&nbsp;";
+            }
+            Pagetext += "</th></tr>";
+            $('#FAQPage').html(Pagetext);
+        } else {
+            $('#FAQListT').html('');
+            $('#FAQPage').html('');
+        }
+    }
+
+    function setPage(nowPage) {
+        $('#page').val(nowPage);
+        searchGuin();
+    }
+
+    function PrevPage() {
+        let nowPagePP = $('#page').val();
+        nowPagePP = nowPagePP - 1;
+        $('#page').val(nowPagePP);
+        searchGuin();
+    }
+
+    function NextPage() {
+        let nowPagePP = $('#page').val();
+        nowPagePP = parseInt(nowPagePP) + 1;
+        $('#page').val(nowPagePP);
+        searchGuin();
+    }
+</script>
+</html>

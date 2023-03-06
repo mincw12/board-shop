@@ -1,0 +1,155 @@
+@font-face {
+    src: url("../fonts/aggro02.ttf");
+    font-family: aggro02;
+}
+
+body {
+    font-family: aggro02;
+}
+
+/* 구인글 작성 */
+.GuinWriteForm-table-div {
+    float: left;
+    width : 500px;
+    padding: 1%;
+    font-family: aggro02;
+    color: #a39485;
+    margin-left: 425px;
+}
+
+.GuinWriteForm-table-caption {
+    font-size: 25px;
+}
+
+.GuinWriteForm-table {
+    border: 2px #a39485 solid;
+    font-size: .9em;
+    box-shadow: 0 2px 5px rgba(0,0,0,.25);
+    border-collapse: collapse;
+    border-radius: 5px;
+    overflow: hidden;
+    width: 180%;
+    /* 반응형에 적용할 때는 width: 200px로 하면 될 듯 */
+    padding-top: 100px;
+}
+
+.GuinWriteForm-th {
+    text-align: center;
+    height: 20px;
+}
+
+.GuinWriteForm-td, #GuinWriteForm-th {
+    padding: 1em .5em;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.GuinWriteForm-td {
+    border-bottom: 1px solid rgba(0,0,0,.1);
+    background: #fff;
+}
+
+a {
+    color: #73685d;
+}
+
+.ghost-GuinWriteForm01 {
+    float: left;
+    padding: 25px;
+}
+
+input::placeholder {
+    font-family: aggro02;
+}
+
+input[type="text"] {
+    font-family: aggro02;
+}
+
+.PMGWtitle {
+    width: 600px;
+    height: 25px;
+    font-size: 15px;
+    border: 0;
+    border-radius: 15px;
+    outline: none;
+    padding-left: 10px;
+    background-color: rgb(233, 233, 233);
+}
+
+.PMGWid {
+    width: 180px;
+    height: 25px;
+    font-size: 15px;
+    border: 0;
+    border-radius: 15px;
+    outline: none;
+    padding-left: 10px;
+    background-color: rgb(233, 233, 233);
+    text-align: center;
+}
+
+.PMGWcontent {
+    width: 600px;
+    min-height: 300px;
+    font-size: 15px;
+    border: 0;
+    border-radius: 15px;
+    outline: none;
+    padding-left: 10px;
+    background-color: rgb(233, 233, 233);
+    text-align: left;
+    /* 구인글 textarea 크기 고정 */
+    resize: none; /* 사용자 임의 변경 불가 */
+}
+
+.PMGWpay, .PMGWworktime, .PMGWworkstart {
+    width: 150px;
+    height: 25px;
+    font-size: 15px;
+    border: 0;
+    border-radius: 15px;
+    outline: none;
+    padding-left: 10px;
+    background-color: rgb(233, 233, 233);
+    text-align: left;
+}
+
+.PMGWlicense1, .PMGWlicense2, .PMGWlicense3 {
+    width: 150px;
+    height: 25px;
+    font-size: 15px;
+    border: 0;
+    border-radius: 15px;
+    outline: none;
+    padding-left: 10px;
+    background-color: rgb(233, 233, 233);
+    text-align: left;
+}
+
+.submit-btn {
+    margin: 2% 0% 2% 0%;
+    font-family: aggro02;
+    font-size: 15px;
+}
+
+
+
+/* 반응형 만들 경우 */
+@media screen and (max-width: 1200px) { /* max-width 가 몇일 때 형태 변할지 지정 */
+
+    .GuinWriteForm-table {
+        border: 2px #a39485 solid;
+        font-size: .9em;
+        box-shadow: 0 2px 5px rgba(0,0,0,.25);
+        border-collapse: collapse;
+        border-radius: 5px;
+        overflow: hidden;
+        width: 600px;
+        /* 반응형일 때의 테이블 크기*/
+        /* 반응형에 적용할 때는 width: 200px로 하면 될 듯 */
+        padding-top: 100px;
+    }
+
+
+}

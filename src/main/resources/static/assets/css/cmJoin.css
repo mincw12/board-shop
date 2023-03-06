@@ -1,0 +1,264 @@
+@font-face {
+    src: url("../fonts/aggro02.ttf");
+    font-family: aggro01;
+}
+
+input:-webkit-autofill { -webkit-box-shadow: 0 0 0 30px #fff inset ; -webkit-text-fill-color: #000; }
+input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:focus, input:-webkit-autofill:active { transition: background-color 5000s ease-in-out 0s; }
+/* input 자동 완성 시 파란 배경 뜨는 거 방지 */
+
+/* 사업자등록번호 버튼 배열 맞추는 div */
+.CMJoin-ghost01 {
+    margin-left: 42%;
+    font-family: aggro02;
+}
+
+/* 이메일 인증 버튼 배열 맞추는 div */
+.CMJoin-ghost02 {
+    margin-left: 42%;
+    font-family: aggro02;
+}
+
+/* 우편번호 버튼 배열 맞추는 div */
+.CMJoin-ghost03 {
+    margin-left: 42%;
+    font-family: aggro02;
+}
+
+.join-first-form {
+    float: left;
+    width: 36%;
+    margin-left: 10%;
+}
+
+.join-btn-div {
+    margin: 0% 0% 0% 35%;
+    /*float: left;*/
+}
+
+/* 아이디 ~ 사업자등록번호 입력까지. */
+.join-first-form {
+    float: left;
+    width: 36%;
+}
+
+/* 이메일 ~ 상세주소 입력까지. */
+.join-second-form {
+    float: left;
+    width: 36%;
+}
+
+.joinForm {
+    float: left;
+    /*position:absolute;*/
+    width: 100%;
+    /* height:400px;*/
+
+    margin: 2% 0% 0% 5%;
+    background-color:#FFFFFF;
+    /*text-align:center;*/
+    /*top:40%;
+    left:50%;*/
+    /*transform: translate(-50%,-50%);*/
+    border-radius: 15px;
+}
+
+.joinForm h2 {
+    text-align: center;
+    margin: 30px 140px 30px 0px;
+    font-family: aggro02;
+}
+
+.textForm {
+    border-bottom: 2px solid #adadad;
+    margin: 30px;
+    padding: 5px 5px;
+    text-align: left;
+}
+
+
+.id {
+    width: 100%;
+    border:none;
+    outline:none;
+    color: #636e72;
+    font-size:16px;
+    height:25px;
+    background: none;
+    font-family: aggro02;
+}
+
+.pw {
+    width: 100%;
+    border:none;
+    outline:none;
+    color: #636e72;
+    font-size:16px;
+    height:25px;
+    background: none;
+    font-family: aggro02;
+}
+
+.name {
+    width: 100%;
+    border:none;
+    outline:none;
+    color: #636e72;
+    font-size:16px;
+    height:25px;
+    background: none;
+    font-family: aggro02;
+}
+
+.email {
+    width: 100%;
+    border:none;
+    outline:none;
+    color: #636e72;
+    font-size:16px;
+    height:25px;
+    background: none;
+    font-family: aggro02;
+}
+
+.nickname {
+    width: 100%;
+    border:none;
+    outline:none;
+    color: #636e72;
+    font-size:16px;
+    height:25px;
+    background: none;
+    font-family: aggro02;
+}
+
+.cellphoneNo {
+    width: 100%;
+    border:none;
+    outline:none;
+    color: #636e72;
+    font-size:16px;
+    height:25px;
+    background: none;
+    font-family: aggro02;
+}
+
+.btn {
+    position: relative;
+    /*left:40%;*/
+    /*transform: translateX(-50%);*/
+    margin: 0px 0px 40px 30px;
+    width: 32%;
+    height: 40px;
+    background: linear-gradient(125deg, #ffffff, #3b3b3c, #ffffff);
+    background-position: center;
+    background-size: 200%;
+    color: white;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    transition: 0.4s;
+    display: inline;
+}
+
+.CMJoin-join-btn {
+    position:relative;
+    /*left:40%;*/
+    /*transform: translateX(-50%);*/
+    margin: 0% 0% 0% 30%;
+    width:32%;
+    height:40px;
+    background: linear-gradient(125deg, #ffffff, #3b3b3c, #ffffff);
+    background-position: center;
+    background-size: 200%;
+    color:white;
+    font-weight: bold;
+    border:none;
+    cursor:pointer;
+    transition: 0.4s;
+    display:inline;
+
+}
+
+.btn:hover {
+    background-position: right;
+}
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+input[type="date"]::before {
+    font-family: aggro02;
+}
+
+.placeholder    {
+    font-family: aggro02;
+}
+
+.btn-upload {
+    width: 150px;
+    height: 30px;
+    background: #fff;
+    border: 1px solid rgb(77, 77, 77);
+    border-radius: 10px;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/*{
+    display: none;
+    width: 100px;
+    margin: auto;
+    display: block;
+}*/
+
+/* 반응형 만들 경우 */
+@media screen and (max-width: 1200px) {
+    /* max-width 가 몇일 때 형태 변할지 지정 */
+    .joinForm {
+
+        /*border: 2px #a39485 solid;*/
+        font-size: .9em;
+        /*box-shadow: 0 2px 5px rgba(0, 0, 0, .25);*/
+        /*border-collapse: collapse;
+        border-radius: 5px;*/
+        overflow: hidden;
+        width: 1000px;
+        /* 반응형일 때의 테이블 크기*/
+        /* 반응형에 적용할 때는 width: 200px로 하면 될 듯 */
+        padding-top: 100px;
+    }
+
+    .CMJoin-join-btn {
+        position:relative;
+        /*left:40%;*/
+        /*transform: translateX(-50%);*/
+        margin: 0px 0px 40px 310px;
+        width:32%;
+        height:40px;
+        background: linear-gradient(125deg,#81ecec,#6c5ce7,#81ecec);
+        background-position: center;
+        background-size: 200%;
+        color:white;
+        font-weight: bold;
+        border:none;
+        cursor:pointer;
+        transition: 0.4s;
+        display:inline;
+    }
+
+    .CMJoin-ghost01, .CMJoin-ghost02, .CMJoin-ghost03 {
+        margin-left: 0%;
+    }
+
+    input::placeholder {
+      /*  width: 200px;*/
+    }
+
+}

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.icia.work.dao.GuinDAO">
+    <select id="GuinList" resultType="guin">
+        SELECT * FROM GUIN_BOARD ORDER BY GBNUM DESC
+    </select>
+
+    <select id="GuinView" parameterType="int" resultType="guin">
+        SELECT * FROM GUIN_BOARD WHERE GBNUM = #{GBNum}
+    </select>
+
+    <insert id="PMGuinWrite" parameterType="guin">
+        INSERT INTO GUIN_BOARD VALUES(GB_SEQ.NEXTVAL, #{GBScale}, #{GBId}, #{GBTitle}, #{GBEdu},
+                                      #{GBContent}, #{GBPay}, #{GBPeriod}, #{GBCategory}, #{GBWorkDate},
+                                      #{GBWorkStart}, #{GBWorkTime}, #{GBLicense1}, #{GBLicense2}, #{GBLicense3},
+                                      #{GBAddr},
+                                      #{GBDatafile1Name}, #{GBDatafile2Name}, #{GBDatafile3Name},
+                                      SYSDATE, #{GBCloseDate}, 0, 0)
+    </insert>
+
+    <update id="GuinModify" parameterType="guin">
+        UPDATE GUIN_BOARD
+        SET GBId = #{GBId}, GBTitle = #{GBTitle},
+            GBEdu = #{GBEdu} , GBContent = #{GBContent}, GBPay = #{GBPay} ,
+            GBPeriod = #{GBPeriod}, GBCategory = #{GBCategory}, GBWorkDate = #{GBWorkDate}, GBWorkStart = #{GBWorkStart}
+                , GBWorkTime = #{GBWorkTime}, GBLicense1 = #{GBLicense1}, GBLicense2 = #{GBLicense2}, GBLicense3 = #{GBLicense3}
+                , GBAddr = #{GBAddr}, GBDatafile1Name = #{GBDatafile1Name}, GBDatafile2Name = #{GBDatafile2Name} , GBDatafile3Name = #{GBDatafile3Name},
+            GBCLOSEDATE = #{GBCloseDate}
+        WHERE GBNUM = #{GBNum}
+    </update>
+
+    <delete id="GuinDelete" parameterType="int">
+        DELETE FROM GUIN_BOARD WHERE GBNUM = #{GBNum}
+    </delete>
+
+    <select id="othercmView" parameterType="String" resultType="company">
+        SELECT * FROM COMPANY_MEMBER WHERE MID=#{gbId}
+    </select>
+
+    <select id="otherpmView" parameterType="String" resultType="personal">
+        SELECT * FROM PERSONAL_MEMBER WHERE MID=#{gbId}
+    </select>
+
+    <update id="gbHitpl" parameterType="int">
+        UPDATE GUIN_BOARD
+        SET GBHIT = GBHIT + 1
+        WHERE GBNUM = #{GBNum}
+    </update>
+
+    <select id="getGuinList5" resultType="guin">
+       select * FROM
+        (
+        SELECT
+        *
+        FROM guin_board ORDER BY GBNUM DESC
+        )
+        WHERE ROWNUM  &lt;= 5
+    </select>
+
+    <select id="findGList" resultType="guin" parameterType="city">
+        select * from (select * from guin_board ORDER BY GBNUM DESC) where GBSCALE LIKE '%'||#{Scale}||'%'  AND GBCATEGORY LIKE '%'||#{Category}||'%' AND GBTITLE LIKE '%'||#{searchv}||'%' AND GBADDR LIKE '%'||#{sido}||'%'||#{siGoon}||'%'
+    </select>
+
+    <select id="gConunt" resultType="int">
+        SELECT COUNT(*) FROM GUIN_BOARD
+    </select>
+
+    <update id="closeGuinPost" parameterType="int">
+        UPDATE guin_board SET GBDEADLINE=1 , GBCLOSEDATE=SYSDATE WHERE GBNUM=#{GBNum}
+    </update>
+
+</mapper>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="/assets/img/logo/Fab.ico" type="image/x-icon">
+    <meta name="autor" content="밍고">
+    <meta name="date" content="">
+    <meta name="description" content="">
+
+    <link rel="stylesheet" href="/assets/css/cmList.css">
+    <!-- <link rel="shortcut icon" href="/favicon/favicon.ico" type="image/x-icon"> -->
+    <!-- 파비콘 추가해주기 -->
+    <script src="https://code.jquery.com/jquery-3.6.3.js"
+            integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
+            crossorigin="anonymous">
+    </script>
+
+</head>
+
+<div th:include="header.html"></div>
+
+<body>
+
+<h1 class="cmList-board-title">회원목록(기업)</h1>
+
+
+<table class="cmList-table">
+
+    <thead class="cmList-board-thead">
+    <tr class="Guin-board-tr">
+        <th class="Guin-board-th">이름</th>
+        <th class="Guin-board-th">아이디</th>
+        <th class="Guin-board-th">연락처</th>
+        <th class="Guin-board-th">이메일</th>
+    </tr>
+    </thead>
+
+    <tbody class="Guin-board-tbody">
+    <tr th:each="list : ${cList}" class="Guin-board-tr">
+        <th class="Guin-board-th">[[${list.CMName}]]</th>
+        <th class="Guin-board-th">
+            <a th:href="@{cmMyView(MId=${list.MId})}">[[${list.MId}]]</a>
+        </th>
+
+        <th class="Guin-board-th">
+            <p>[[${list.CMPhone}]]</p>
+        </th>
+
+        <th class="Guin-board-th">
+            <p>[[${list.CMEmail}]]</p>
+        </th>
+    </tr>
+    </tbody>
+
+</table>
+
+</div>
+
+</div>
+
+</body>
+
+<script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
+        crossorigin="anonymous"></script>
+
+
+
+
+</html>

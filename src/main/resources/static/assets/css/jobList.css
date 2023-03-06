@@ -1,0 +1,154 @@
+@font-face {
+    src: url("../fonts/aggro02.ttf");
+    font-family: aggro02;
+
+}
+
+.write-button-div {
+    float: right;
+}
+
+.job-write-button {
+    font-family: aggro02;
+    font-size: 15px;
+
+    padding: 4px 2px 2px 2px;
+    /* 버튼 테두리와 버튼 안 글씨 사이의 공간 */
+
+    /*margin: 0px 0px 2px 555px;*/
+}
+
+/* jobList 전체의 div */
+.jobList-div {
+    float: left;
+    margin: 0px 0px 0px 440px;
+}
+
+.job-board-title {
+    padding: 20px 0px 0px 430px;
+    font-family: aggro02;
+    margin: 0;
+}
+
+.job-board {
+    float: left;
+    padding: 1%;
+    padding-bottom: 1%;
+    font-family: aggro02;
+    color: #3b3b3c;
+
+}
+
+.job-board-tbody {
+    padding:1.5em;
+    background: #f5f5f5
+}
+
+.job-table {
+    border: 1px #a39485 solid;
+    font-size: .9em;
+    box-shadow: 0 2px 5px rgba(0,0,0,.25);
+    border-collapse: collapse;
+    border-radius: 5px;
+    overflow: hidden;
+    width: 1000px;
+    font-family: aggro02;
+    background: #f5f5f5;
+}
+
+.job-board-th {
+    text-align: center;
+}
+
+.job-board-thead {
+    font-weight: bold;
+    color: #fff;
+    background: #3b3b3c;
+}
+
+.pageNum-div {
+    margin: 30px 0px 35px 0px;
+}
+
+#JobPage {
+    text-align: center;
+    padding: 10px 0px 10px 270px;
+    background: #f5f5f5;
+
+}
+
+#viewNum {
+    background: #f5f5f5;
+}
+
+.pageNum-option {
+    font-family: aggro02;
+}
+
+a {
+    color: #010102;
+}
+
+a:hover { /* 마우스 올렸을 때 a 태그 색 바뀜 */
+    color: #878688;
+}
+
+.job-deadline-end {
+    color: red;
+}
+
+.job-deadline-ing {
+    color: green;
+}
+
+
+
+/* 반응형 만들 경우 */
+@media screen and (max-width: 700px) {
+    /* 윈도우가 얼마나 작아질 때 */
+
+    /* jobList 전체의 div */
+    .jobList-div {
+        float: left;
+        margin: 5%;
+    }
+
+    .job-board-title {
+        padding: 5%;
+        font-family: aggro02;
+
+    }
+
+    /* 테이블도 작아질지 (형태 변할지) 지정 */
+    .job-table {
+        border: 2px #a39485 solid;
+        font-size: .9em;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, .25);
+        border-collapse: collapse;
+        border-radius: 5px;
+        overflow: hidden;
+        width: 395px;
+        /* 반응형일 때의 테이블 크기*/
+        /* 반응형에 적용할 때는 width: 200px로 하면 될 듯 */
+        padding-top: 100px;
+    }
+
+    .write-button-div {
+        float: left;
+        margin: 0px 0px 2px 15px;
+
+    }
+
+
+    .job-write-button {
+        font-family: aggro02;
+        font-size: 12px;
+
+        padding: 2px 1px 1px 1px;
+        /* 버튼 테두리와 버튼 안 글씨 사이의 공간 */
+
+        margin: 2px 0px 2px 15px;
+        /* 버튼의 위치*/
+    }
+
+}

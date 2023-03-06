@@ -1,0 +1,233 @@
+
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="author" content="mingo">
+    <meta name="date" content="">
+    <meta name="description" content="">
+    <link rel="stylesheet" href="assets/css/GuinWrite.css">
+    <link rel="shortcut icon" href="/assets/img/logo/Fab.ico" type="image/x-icon">
+    <title>수정</title>
+</head>
+
+<div th:include="header.html"></div>
+
+<style>
+    input[type="number"]::-webkit-outer-spin-button,
+    input[type="number"]::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+    }
+</style>
+<body>
+
+<div class="ghost-GuinWriteForm01">
+    <table>
+        <tr>
+            <th></th>
+            <td></td>
+        </tr>
+    </table>
+</div>
+
+
+<div class="GuinWriteForm-table-div">
+
+    <div class="ghost-GuinWriteForm02">
+        <table>
+            <tr>
+                <th></th>
+                <td></td>
+            </tr>
+        </table>
+    </div>
+
+<form action="GuinModify" method="post" enctype="multipart/form-data">
+    <input type="hidden" name="GBScale" th:value="${session.login.RType}" />
+    <input type="hidden" name="GBNum" th:value="${GuinModify.GBNum}" />
+
+    <table class="GuinWriteForm-table">
+        <caption class="GuinWriteForm-table-caption">구인글 수정</caption>
+
+        <tr class="GuinWriteForm-tr">
+            <th class="GuinWriteForm-th">글제목</th>
+            <td class="GuinWriteForm-td">
+                <input type="text" name="GBTitle" th:value="${GuinModify.GBTitle}"></td>
+        </tr>
+
+        <tr class="GuinWriteForm-tr">
+            <th class="GuinWriteForm-th">작성자</th>
+            <td class="GuinWriteForm-td">
+                <input type="text" name="GBId" th:value="${GuinModify.GBId}" readonly></td>
+        </tr>
+
+        <tr class="GuinWriteForm-tr">
+            <th class="GuinWriteForm-th">요구학력</th>
+            <td class="GuinWriteForm-td">
+                <select name="GBEdu">
+                    <option value="">요구학력</option>
+                    <option value="중학교졸이상">중학교졸 이상</option>
+                    <option value="고등학교졸이상">고등학교졸 이상</option>
+                    <option value="전문대졸이상">전문대졸 이상</option>
+                    <option value="대학교졸이상">대학교졸 이상</option>
+                    <option value="대학원졸이상">대학원졸 이상</option>
+                </select>
+            </td>
+        </tr>
+
+        <tr class="GuinWriteForm-tr">
+            <th class="GuinWriteForm-th">글내용</th>
+            <td class="GuinWriteForm-td"><textarea name="GBContent" th:text="${GuinModify.GBContent}"></textarea></td>
+        </tr>
+
+        <tr class="GuinWriteForm-tr">
+            <th class="GuinWriteForm-th">급여</th>
+            <td class="GuinWriteForm-td"><input type="number" name="GBPay" th:value="${GuinModify.GBPay}"></td>
+        </tr>
+
+        <tr class="GuinWriteForm-tr">
+            <th class="GuinWriteForm-th">근무기간</th>
+            <td class="GuinWriteForm-td">
+                <input type="radio" name="GBPeriod" value="단기"/>단기
+                <input type="radio" name="GBPeriod" value="장기"/>장기
+            </td>
+        </tr>
+
+        <tr class="GuinWriteForm-tr">
+            <th class="GuinWriteForm-th">일유형</th>
+            <td class="GuinWriteForm-td">
+                <select name="GBCategory" style="width: 200px">
+                    <option value="">일유형</option>
+                    <option value="음식점">음식점</option>
+                    <option value="배달">배달</option>
+                    <option value="잡일">잡일</option>
+                    <option value="물류">물류</option>
+                    <option value="학원">학원</option>
+                    <option value="기타">기타</option>
+                </select>
+            </td>
+        </tr>
+
+        <tr class="GuinWriteForm-tr">
+            <th class="GuinWriteForm-th">근무 요일</th>
+            <td class="GuinWriteForm-td">
+                월<input type="checkbox" name="GBWorkDate" value="월"/>
+                화<input type="checkbox" name="GBWorkDate" value="화"/>
+                수<input type="checkbox" name="GBWorkDate" value="수"/>
+                목<input type="checkbox" name="GBWorkDate" value="목"/>
+                금<input type="checkbox" name="GBWorkDate" value="금"/>
+                토<input type="checkbox" name="GBWorkDate" value="토"/>
+                일<input type="checkbox" name="GBWorkDate" value="일"/></td>
+        </tr>
+
+
+        <tr class="GuinWriteForm-tr">
+            <th class="GuinWriteForm-th">출근 시간</th>
+            <td class="GuinWriteForm-td"><input type="text" name="GBWorkStart" th:value="${GuinModify.GBWorkStart}"></td>
+        </tr>
+
+        <tr class="GuinWriteForm-tr">
+            <th class="GuinWriteForm-th">근무 시간</th>
+            <td class="GuinWriteForm-td"><input type="number" name="GBWorkTime" th:value="${GuinModify.GBWorkTime}"></td>
+        </tr>
+
+        <tr class="GuinWriteForm-tr">
+            <th class="GuinWriteForm-th">요구 자격증1</th>
+            <td class="GuinWriteForm-td"><input type="text" name="GBLicense1" th:value="${GuinModify.GBLicense1}"></td>
+        </tr>
+
+        <tr class="GuinWriteForm-tr">
+            <th class="GuinWriteForm-th">요구 자격증2</th>
+            <td class="GuinWriteForm-td"><input type="text" name="GBLicense2" th:value="${GuinModify.GBLicense2}"></td>
+        </tr>
+
+        <tr class="GuinWriteForm-tr">
+            <th class="GuinWriteForm-th">요구 자격증3</th>
+            <td class="GuinWriteForm-td"><input type="text" name="GBLicense3" th:value="${GuinModify.GBLicense3}"></td>
+        </tr>
+
+        <tr class="GuinWriteForm-tr">
+            <th class="GuinWriteForm-th">주소</th>
+            <td class="GuinWriteForm-td">
+                <input type="text" 	 name="GBAddr1" id="sample6_postcode" placeholder="우편번호">
+                <input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br><br>
+                <input type="text"   name="GBAddr2" size="40" id="sample6_address" placeholder="주소"><br><br>
+                <input type="text"   name="GBAddr3" size="40" id="sample6_detailAddress" placeholder="상세주소">
+            </td>
+        </tr>
+
+        <tr class="GuinWriteForm-tr">
+            <th class="GuinWriteForm-th">첨부파일1</th>
+            <td class="GuinWriteForm-td">
+                <input type="file" name="GBDatafile1"/>
+                <input type="hidden" name="GBDatafile1Name" th:value="${GuinModify.GBDatafile1Name}"/>
+                </td>
+        </tr>
+
+        <tr class="GuinWriteForm-tr">
+            <th class="GuinWriteForm-th">첨부파일2</th>
+            <td class="GuinWriteForm-td">
+                <input type="file" name="GBDatafile2"/>
+                <input type="hidden" name="GBDatafile2Name" th:value="${GuinModify.GBDatafile2Name}"/>
+                </td>
+        </tr>
+
+        <tr class="GuinWriteForm-tr">
+            <th class="GuinWriteForm-th">첨부파일3</th>
+            <td class="GuinWriteForm-td"><input type="file" name="GBDatafile3"/>
+                <input type="hidden" name="GBDatafile3Name" th:value="${GuinModify.GBDatafile3Name}"/>
+            </td>
+        </tr>
+
+        <tr class="GuinWriteForm-tr">
+            <th class="GuinWriteForm-th">마감일</th>
+            <td class="GuinWriteForm-td"><input type="date" name="GBCloseDate"></td>
+        </tr>
+
+        <tr class="GuinWriteForm-tr">
+            <th colspan="2"><input type="submit" value="등록"></th>
+        </tr>
+
+    </table>
+
+</form>
+
+</div>
+
+</body>
+
+<script
+        src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script>
+    function sample6_execDaumPostcode() {
+        new daum.Postcode({
+            oncomplete: function (data) {
+                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+                // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+                var addr = ''; // 주소 변수
+
+                //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+                if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+                    addr = data.roadAddress;
+                } else { // 사용자가 지번 주소를 선택했을 경우(J)
+                    addr = data.jibunAddress;
+                }
+
+
+                // 우편번호와 주소 정보를 해당 필드에 넣는다.
+                document.getElementById('sample6_postcode').value = data.zonecode;
+                document.getElementById("sample6_address").value = addr;
+                // 커서를 상세주소 필드로 이동한다.
+                document.getElementById("sample6_detailAddress").focus();
+            }
+        }).open();
+    }
+</script>
+</html>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.icia.work.dao.FAQDAO">
+    <select id="FAQList" resultType="faq">
+        SELECT * FROM FAQ order by FAQNUM DESC
+    </select>
+
+    <insert id="FAQWrite" parameterType="faq">
+        INSERT INTO FAQ VALUES(FAQ_SEQ.NEXTVAL, #{FAQTitle}, #{FAQContent}, #{FAQWriter}, SYSDATE,
+                               #{AnswerTitle}, #{AnswerContent}, 0, #{FAQFileName} ,0)
+    </insert>
+
+    <select id="FAQView" parameterType="int" resultType="faq">
+        SELECT * FROM FAQ WHERE FAQNUM = #{FAQNum}
+    </select>
+
+    <update id="faqHitpl" parameterType="int">
+        UPDATE FAQ
+        SET FAQHIT = FAQHIT + 1
+        WHERE FAQNUM = #{FAQNum}
+    </update>
+
+    <delete id="FAQDelete" parameterType="int">
+        DELETE FROM FAQ WHERE FAQNum = #{FAQNum}
+    </delete>
+
+    <select id="getFAQList5" resultType="faq">
+        select * FROM
+        (
+        SELECT
+        *
+        FROM FAQ ORDER BY ROWNUM DESC
+        )
+        WHERE ROWNUM  &lt;= 5
+    </select>
+
+    <update id="FAQAnswerWrite" parameterType="faq">
+        Update FAQ SET ANSWERTITLE=#{AnswerTitle}, ANSWERCONTENT=#{AnswerContent}, FAQOX=1 WHERE FAQNUM=#{FAQNum}
+    </update>
+
+</mapper>

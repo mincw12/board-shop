@@ -1,0 +1,67 @@
+@font-face {
+    src: url("../fonts/aggro02.ttf");
+    font-family: aggro02;
+}
+/* 내 정보(개인) 전체 div */
+.otherView-div {
+    float: left;
+    padding: 30px 0px 0px 450px;
+    font-family: aggro02;
+    color: #a39485;
+}
+
+.otherView-table-caption {
+    font-size: 25px;
+    margin: 0 0 2% 0;
+}
+
+.otherView-table {
+    border: 2px #a39485 solid;
+    font-size: .9em;
+    box-shadow: 0 2px 5px rgba(0,0,0,.25);
+    border-collapse: collapse;
+    border-radius: 5px;
+    overflow: hidden;
+    width: 320%;
+    /* 반응형에 적용할 때는 width: 200px로 하면 될 듯 */
+    padding-top: 100px;
+}
+
+.otherView-th {
+    text-align: center;
+}
+
+.otherView-td, #otherView-th {
+    padding: 1em .5em;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.otherView-td {
+    border-bottom: 1px solid rgba(0,0,0,.1);
+    background: #fff;
+}
+
+a {
+    color: #73685d;
+}
+
+
+/* 반응형 만들 경우 */
+@media screen and (max-width: 1200px) { /* max-width 가 몇일 때 형태 변할지 지정 */
+
+    .otherView-table {
+        border: 2px #a39485 solid;
+        font-size: .9em;
+        box-shadow: 0 2px 5px rgba(0,0,0,.25);
+        border-collapse: collapse;
+        border-radius: 5px;
+        overflow: hidden;
+        width: 600px;
+        /* 반응형일 때의 테이블 크기*/
+        /* 반응형에 적용할 때는 width: 200px로 하면 될 듯 */
+        padding-top: 100px;
+    }
+
+
+}

@@ -1,0 +1,249 @@
+@font-face {
+    src: url("../fonts/aggro02.ttf");
+    font-family: aggro02;
+}
+
+body {
+    font-family: aggro02;
+}
+
+.GuinView-div {
+    margin: 0px 0px 0px 0px;
+    padding: 0px 0px 0px 100px;
+}
+
+.GuinView-title-div {
+    float: left;
+    font-size: 25px;
+    margin: 0px 0px 0px 0px;
+    padding: 0;
+    font-family: aggro02;
+    color: #3b3b3c;
+    width: 100%;
+}
+
+.GuinView-title {
+    float: left;
+    margin: 30px 0px 0px 27%;
+}
+
+.hits {
+    float: left;
+    margin: 0px 0px 0px 1115px;
+    font-family: aggro02;
+    font-size: 17px;
+    color: #3b3b3c;
+}
+
+.Guin-button-div {
+    float: left;
+    margin: 0px 0px 0px 500px;
+}
+
+.Guin-btn {
+    font-family: aggro02;
+}
+
+
+.GuinView-table-div {
+    border: 2px #3b3b3c solid;
+    font-size: .9em;
+    box-shadow: 0 2px 5px rgba(0,0,0,.25);
+    border-collapse: collapse;
+    border-radius: 5px;
+    overflow: auto;
+    width: 1040px;
+    /* 반응형에 적용할 때는 width: 200px로 하면 될 듯 */
+    height: 55%;
+    float: left;
+    font-family: aggro02;
+    color: #3b3b3c;
+    margin: 5px 10px 5px 20px;
+}
+
+/*.GuinView-table02 {
+    margin-left: 35px;
+}*/
+
+.GuinView-t01-div {
+    float: left;
+    width: 95%;
+    margin: 1px 1px 1px 1px;
+}
+
+.GuinView-t02-div {
+    float: left;
+    width: 95%;
+    height: 27%;
+    margin: 1px 0px 1px 1px;
+}
+
+.guin-content {
+    width: 910px;
+    height: 200px;
+    vertical-align: middle;
+    text-align: left;
+    margin-left: 25px;
+    font-size: 20px;
+}
+
+/* 구직글번호 ~ 급여까지의 div */
+.GuinView-0101div {
+    float: left;
+    width: 32%;
+    margin-left: 3px;
+}
+/* 구직글번호 ~ 급여까지의 table */
+.GuinView-0101t {
+    margin-left: 25px;
+    float: left;
+}
+
+/*근무 기간 ~ 근무 시간까지의 div*/
+.GuinView-0102div {
+    float: left;
+    width: 32%;
+    margin-left: 3px;
+}
+/*근무 기간 ~ 근무 시간까지의 table*/
+.GuinView-0102t {
+    margin-left: 20px;
+}
+
+/* 자격증 1 ~ 주소까지의 div*/
+.GuinView-0103div {
+    float: left;
+    width: 35%;
+    margin-left: 2px;
+}
+/* 자격증 1 ~ 주소까지의 table*/
+.GuinView-0103t {
+    float: right;
+}
+
+.GuinView-t03-div {
+    float: left;
+    width: 99%;
+}
+
+.GuinView-file-table01 {
+    margin-left: 25px;
+}
+.GuinView-file-table02 {
+    margin-left: 25px;
+}
+.GuinView-file-table03 {
+    margin-left: 25px;
+}
+
+
+.guin-cmt-div {
+    margin: 30px 10px 10px 10px;
+    font-family: aggro02;
+    height: 55%;
+}
+
+.guin-cmtList-div {
+    height: 480px;
+    width: 28%;
+    margin: 3px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
+.GuinView-th {
+    text-align: center;
+}
+
+.GuinView-td, #GuinView-th {
+    padding: 1em .5em;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.GuinView-td {
+    border-bottom: 1px solid rgba(0,0,0,.1);
+    background: #fff;
+}
+
+.cmt-write-div {
+
+}
+
+/* 댓글 작성칸 디자인 */
+#GCContent {
+    resize: none; /* textarea 크기 고정 */
+    width: 350px;
+    height: 34px;
+    font-size: 15px;
+    font-family: aggro02;
+    float: left;
+}
+
+.cmt-btn {
+    font-family: aggro02;
+    height: 41px;
+    width: 41px;
+    margin: 0px 0px 0px 3px;
+    float: left;
+    background: #b0b0b0;
+    border-radius: 8px;
+    border: none;
+    box-shadow: 2px 2px 6px #737275;
+}
+
+.cmt-btn:hover {
+    background: #cecece;
+    box-shadow: 3px 3px 7px #ffffff;
+}
+
+.guin-cmt-profile {
+    margin: 0;
+    padding-left: 8px;
+}
+
+/* 댓글의 날짜 크기 줄이기 */
+.guin-cmt-date {
+    padding-left: 3%;
+    font-size: 7px;
+}
+
+#guin-cmt-content {
+    width: 335px;
+    padding: 0px 5px 10px 5px;
+    text-align: left;
+}
+
+.cmt-profile-img {
+    width: 20px;
+}
+
+a {
+    color: #010102;
+}
+
+/* 조회수 */
+.hits   {
+    text-align: right;
+}
+/* 반응형 만들 경우 */
+@media screen and (max-width: 1200px) { /* max-width 가 몇일 때 형태 변할지 지정 */
+
+    .GuinView-table-div {
+
+    }
+
+    /*.GuinView-table {
+        border: 2px #a39485 solid;
+        font-size: .9em;
+        box-shadow: 0 2px 5px rgba(0,0,0,.25);
+        border-collapse: collapse;
+        border-radius: 5px;
+        overflow: auto;
+        width: 150px;
+        !* 반응형일 때의 테이블 크기*!
+        !* 반응형에 적용할 때는 width: 200px로 하면 될 듯 *!
+        padding-top: 100px;
+    }*/
+
+}

@@ -1,0 +1,76 @@
+<link rel="shortcut icon" href="/assets/img/logo/Fab.ico" type="image/x-icon">
+<head>
+    <meta charset="UTF-8">
+    <html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+    <script src="https://kit.fontawesome.com/3624917c4f.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/assets/css/header.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" rel="stylesheet">
+    <!-- 아이콘 사용 사이트 : https://fontawesome.com/v5/search?o=r&s=solid -->
+
+
+
+    <title>header</title>
+    <script src="assets/js/header.js" defer></script>
+</head>
+
+<header class="header">
+
+    <link rel="shortcut icon" href="/assets/img/logo/Fab.ico" type="image/x-icon">
+
+<nav class="navbar">
+
+        <a href="index" class="web-name">
+            <img src="/assets/img/logo/ALABALogoWrite.png" class="alabaLogo"/>
+        </a>
+
+    <ul class="navbar__menu">
+        <li><a href="GuinList" class="header-menu">구인</a></li>
+        <li><a href="JobList" class="header-menu">구직</a></li>
+        <li><a href="NoticeList" class="header-menu">공지사항</a></li>
+        <li><a href="FAQList" class="header-menu">문의사항</a></li>
+        <li class="header-mobile"><a href="Login" class="header-mobile">로그인</a></li>
+        <li class="header-mobile"><a href="pmMyView" class="header-mobile">내 정보보기</a></li>
+
+<!--    <li><a href=""></a></li> -->
+    </ul>
+    <ul class="navbar__links">
+
+        <ul class="navbar__links">
+            <li><a href="Login" class="login" th:if="${session.login eq null}">
+                <i class="fa-solid fa-user-check"></i> 로그인</a></li>
+
+            <li><a href="PMJoin" class="join" th:if="${session.login eq null}">
+                <i class="fa-solid fa-user-plus"></i> 개인 회원가입</a></li>
+
+            <li><a href="CMJoin" class="join" th:if="${session.login eq null}">
+                <i class="fa-solid fa-building-circle-arrow-right"></i> 기업 회원가입</a></li>
+
+            <li><a th:href="@{pmMyView(MId=${session.login.MId})}" class="Logout"
+                   th:if="${session.login ne null && session.login.RType eq '개인'}">
+                <i class="fa-solid fa-user-gear"></i></i> [[${session.login.MId}]]</a></li>
+
+            <li><a href="Logout" class="Logout" th:if="${session.login ne null}">
+                <i class="fa-solid fa-user-xmark"></i> 로그아웃</a></li>
+
+            <li><a th:href="@{cmMyView(MId=${session.login.MId})}" class="Logout"
+                   th:if="${session.login ne null && session.login.RType eq '기업'}">
+                <i class="fa-solid fa-building-user"></i> 내정보보기(기업)</a></li>
+
+            <li><a href="personList" class="pmList"
+                   th:if="${session.login ne null && session.login.MId eq 'admin'}">
+                <i class="fa-solid fa-user-gear"></i></i>회원목록(개인)</a></li>
+
+            <li><a href="companyList" class="cmList"
+                   th:if="${session.login ne null && session.login.MId eq 'admin'}">
+                <i class="fa-solid fa-user-gear"></i></i>회원목록(기업)</a></li>
+        </ul>
+
+    </ul>
+
+    <a href="#" class="navbar__toggleBtn"><i class="fas fa-bars"></i></a>
+
+</nav>
+
+</header>
+    </html>

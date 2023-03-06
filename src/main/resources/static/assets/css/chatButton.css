@@ -1,0 +1,18 @@
+.chat-box {
+    height: 50px;
+    width: 100px;
+    border-radius: 100px;
+    position: fixed;
+    bottom: 50px;
+    margin-right: 75px;
+    right: 0;
+    width:50px;
+    background-color: #ababab;
+    box-shadow: 3px 3px 7px #737275;
+}
+
+.chat-box:hover {
+    background-color: #2b2b2c;
+    color: #FFFFFF;
+    box-shadow: 5px 5px 8px #ffffff;
+}

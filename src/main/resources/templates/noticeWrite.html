@@ -1,0 +1,74 @@
+
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="autor" content="밍고">
+    <meta name="date" content="">
+    <meta name="description" content="">
+    <link rel="stylesheet" href="assets/css/NoticeWrite.css">
+    <link rel="shortcut icon" href="/assets/img/logo/Fab.ico" type="image/x-icon">
+    <title>공지사항 작성</title>
+</head>
+
+<div th:include="header.html"></div>
+
+<script src="https://code.jquery.com/jquery-3.6.3.js"
+        integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
+        crossorigin="anonymous"></script>
+
+<body>
+
+<div class="NoticeWriteForm-table-div">
+
+<form action="NoticeWrite" method="POST" enctype="multipart/form-data"
+    class="NoticeWriteForm">
+
+    <table class="NoticeWriteForm-table">
+        <caption class="NoticeWriteForm-table-caption">공지사항 작성</caption>
+
+        <tr class="NoticeWriteForm-tr">
+            <td class="NoticeWriteForm-td">작성자</td>
+            <td th:if="${session.login.RType eq '개인'}"><input type="text" name="FAQWriter"
+            th:value="${session.login.MId}" class="NoticeWwrite" readonly>
+            </td>
+        </tr>
+
+        <tr class="NoticeWriteForm-tr">
+            <td class="NoticeWriteForm-td">글제목</td>
+            <td class="NoticeWriteForm-td"><input type="text" name="NoTitle" class="NoticeWtitle" maxlength="37"></td>
+        </tr>
+
+        <tr class="NoticeWriteForm-tr">
+            <td class="NoticeWriteForm-td">글내용</td>
+            <td class="NoticeWriteForm-td" style="height: 300px">
+                <textarea name="NoContent" class="NoticeWcontent"></textarea>
+            </td>
+        </tr>
+
+        <tr class="NoticeWriteForm-tr">
+            <td class="NoticeWriteForm-td">파일업로드</td>
+            <td class="NoticeWriteForm-td"><input type="file" name="NoFile"></td>
+        </tr>
+
+        <tr class="NoticeWriteForm-tr">
+            <th colspan="2"><input type="submit" value="등록" class="NoticeWriteBtn"/>
+            </th>
+        </tr>
+    </table>
+</form>
+
+</div>
+
+</body>
+
+<script th:if="${session.login eq null ||(session.login.MId ne 'admin')}">
+    alert('관리자 페이지입니다!');
+    location.href="/";
+</script>
+
+</html>

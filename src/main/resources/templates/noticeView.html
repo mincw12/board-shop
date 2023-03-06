@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+
+    <meta name="author" content="mingo">
+    <meta name="date" content="">
+    <meta name="description" content="">
+    <link rel="stylesheet" href="/assets/css/noticeView.css">
+    <link rel="shortcut icon" href="/assets/img/logo/Fab.ico" type="image/x-icon">
+    <title>공지사항</title>
+</head>
+
+<div th:include="header.html"></div>
+
+<body>
+
+<div class="noticeView-table-div">
+
+    <div class="noticeView-div">
+
+        <table class="noticeView-table">
+
+            <caption class="noticeView-table-caption">공지사항</caption>
+
+            <caption class="noticeHit" align="right">
+                조회수 : [[${NoticeView.noHit}]]
+            </caption>
+
+
+
+            <tr class="noticeView-tr">
+                <th class="noticeView-th">제목</th>
+                <td class="noticeView-td">[[${NoticeView.NoTitle}]]</td>
+            </tr>
+
+            <tr class="noticeView-tr">
+                <th class="noticeView-th">내용</th>
+                <td class="noticeView-td">
+                    <div class="content-div01">&nbsp;</div></br>
+                    [[${NoticeView.NoContent}]]
+                    <div class="content-div02">&nbsp;</div>
+                    <div class="content-div02">&nbsp;</div>
+                </td>
+            </tr>
+
+            <tr class="noticeView-tr">
+                <th class="noticeView-th">참고자료</th>
+                <td class="noticeView-td">
+                    <a th:if="${NoticeView.NoFileName ne null}" th:href="@{/noticefile/{fileName}(fileName=${NoticeView.NoFileName})}" download>[[${NoticeView.NoFileName}]]</a>
+                    <!-- <img th:src="@{/noticefile/{aa}(aa=${NoticeView.NoFileName})}" width="200px">-->
+                </td>
+            </tr>
+
+            <tr class="noticeView-tr">
+                <th colspan="2">
+                    <button th:if="${session.login ne null && session.login.MId eq 'admin'}"
+                            th:onclick="|location.href='@{NoticeDelete(NoNum=${NoticeView.NoNum})}'|" class="noticeView-delete-btn">
+                        <i class="fa-regular fa-trash-can">
+                        </i>
+                        <span>삭제</span>
+                    </button>
+
+                </th>
+            </tr>
+
+
+        </table>
+
+    </div>
+</div>
+</body>
+
+<script src="https://code.jquery.com/jquery-3.6.3.js"
+        integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
+        crossorigin="anonymous"></script>
+<script>
+
+</script>
+
+</html>

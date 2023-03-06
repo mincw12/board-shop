@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="shortcut icon" href="/assets/img/logo/Fab.ico" type="image/x-icon">
+
+  <!-- 아이콘 사용 사이트 -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="/assets/css/cmJoin.css">
+
+  <title class="cmjoin-html-title">회원가입</title>
+
+  <div th:include="header.html"></div>
+
+<body>
+
+<form action="CMJoin" onsubmit="return checkConfirm();"
+      method="POST" enctype="multipart/form-data" class="joinForm"> <!--onsubmit="return checkConfirm();"-->
+
+  <div class="PMJoin-html-title">
+  <h2>기업회원가입</h2>
+  </div>
+
+  <div class="join-first-form">
+
+  <div class="textForm">
+    <i class="fa-solid fa-font"></i>&nbsp;
+    <input type="text" placeholder="아이디" style="width: 200px" id="MId" class="id" name="MId" onchange="checkId()" required>
+    </br>
+    <span id="check1"></span>
+    </input>
+  </div>
+
+  <div class="textForm">
+    <i class="fa-solid fa-lock"></i>&nbsp;
+    <input type="password" class="pw" name="CMPw" id="CMPw" onkeyup="pwRegexp()" placeholder="비밀번호 입력(영문, 숫자, 특수문자 혼합)" style="width: 290px" required>
+    </br>
+    <span id="pwResult1"></span>
+    </input>
+  </div>
+
+  <div class="textForm">
+    <i class="fa-solid fa-check"></i>&nbsp;
+    <input type="password" class="pw"  id="checkPw" onkeyup="pwCheck()" placeholder="비밀번호 확인" style="width: 200px" required/>
+    </br>
+    <span id="pwResult2"></span>
+  </div>
+
+  <div class="textForm">
+    <i class="fa-solid fa-signature"></i>&nbsp;
+    <input type="text" class="name" name="CMName" maxlength="4" placeholder="기업명 입력" style="width: 200px" required>
+  </div>
+<!--  // 기업사이트 주소 입력-->
+  <div class="textForm">
+    <i class="fa-solid fa-link"></i>
+    <input type="text" name="CMSite" class="name" placeholder="기업사이트 주소 입력" style="width: 200px"/>
+  </div>
+
+  <div class="textForm" style="white-space: nowrap;">
+    <i class="fa-solid fa-building-circle-check"></i>
+    <input type="text" id="CMBN" class="name" name="CMBn" placeholder="사업자등록번호 (숫자만 입력)" style="width: 200px;" size="40" required/>
+    <span id="BNSetValue">
+      <a href="#" onclick="checkBN()" class="CMJoin-ghost01"> <!-- 형식 다름 -->
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        &nbsp번호 조회&nbsp
+      </a>
+    </span>
+  </div>
+
+  </div>  <!-- join-first-form 의 div 닫기 -->
+
+
+  <div class="join-second-form">
+
+  <div class="textForm" style="white-space: nowrap;">
+    <i class="fa-solid fa-envelope"></i>&nbsp;
+    <input type="email" class="email" id="CMEmail" name="CMEmail" placeholder="이메일 입력" style="width: 200px;" size="40"  required/>
+    <span id="confEmail">
+            <a href="#" onclick="checkEmail()" class="CMJoin-ghost03">
+        <!--<div ></div>-->
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        &nbsp인증번호 발송&nbsp
+    </a>
+      </span>
+        </div>
+
+  <div class="textForm">
+    <i class="fa-solid fa-phone"></i>&nbsp;
+    <input type="text" class="cellphoneNo" name="CMPhone" placeholder="전화번호" style="width: 200px" required>
+  </div>
+
+  <div class="textForm" style="white-space: nowrap;">
+    <i class="fa-solid fa-map-location-dot"></i>&nbsp;
+    <input type="text" class="name" name="addr1" id="sample6_postcode" placeholder="우편번호" style="width: 200px" required readonly>
+    <a href="#" onclick="sample6_execDaumPostcode()" class="CMJoin-ghost01">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      &nbsp우편번호 찾기&nbsp
+    </a>
+  </div>
+
+  <div class="textForm">
+    <i class="fa-solid fa-house"></i>&nbsp;
+    <input type="text" class="name" name="addr2" size="40" id="sample6_address" placeholder="주소" style="width: 200px" required readonly>
+  </div>
+
+  <div class="textForm">
+    <i class="fa-solid fa-house"></i>&nbsp;
+    <input type="text" class="name" name="addr3" size="40" id="sample6_detailAddress" placeholder="상세주소" style="width: 200px" required>
+  </div>
+
+    <div class="textForm">
+      <li class="img" style="list-style: none;">
+        <div id="image_preview">
+          <img src="/img.png" alt="미리보기"  style="width:126px; height:165px; font-family: aggro02; ">
+        </div>
+        <div class="f_box">
+          <label for="img">
+            <i class="fa-solid fa-file-circle-plus"></i></label>
+          <input type="file" id="img" name="CMProfile" style="font-family: aggro02;"/>
+        </div>
+      </li>
+    </div>
+
+
+  </div> <!-- join-second-form 의 div 닫기 -->
+
+  <input type="submit" class="CMJoin-join-btn" value="J O I N"/>
+
+    </div>
+
+</form> <!-- CMJoin 전체의 from 닫기 -->
+
+
+<input type="hidden" id="idvalue" value="">
+<input type="hidden" id="pwvalue" value="">
+<input type="hidden" id="pwcheckvalue" value="">
+<input type="hidden" id="emailvalue" value="">
+<input type="hidden" id="bnvalue" value="">
+<script src="https://code.jquery.com/jquery-3.6.1.js"
+        integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
+        crossorigin="anonymous"></script>
+
+<script>
+  // 이미지 업로드
+  $('#img').on('change', function() {
+    ext = $(this).val().split('.').pop().toLowerCase(); //확장자
+    //배열에 추출한 확장자가 존재하는지 체크
+    if($.inArray(ext, ['gif', 'png', 'jpg', 'jpeg']) == -1) {
+      resetFormElement($(this)); //폼 초기화
+      window.alert('이미지 파일이 아닙니다! (gif, png, jpg, jpeg 만 업로드 가능)');
+    } else {
+      file = $('#img').prop("files")[0];
+      blobURL = window.URL.createObjectURL(file);
+      $('#image_preview img').attr('src', blobURL);
+      $('#image_preview').slideDown(); //업로드한 이미지 미리보기
+      $(this).slideUp(); //파일 양식 감춤
+    }
+  });
+</script>
+
+</body>
+
+
+<script src="https://code.jquery.com/jquery-3.6.1.js"
+        integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
+        crossorigin="anonymous"></script>
+
+<script>
+
+  function pwRegexp() {
+    let CMPw = document.getElementById("CMPw").value;
+    let pwResult1 = document.getElementById("pwResult1");
+
+    let num = CMPw.search(/[0-9]/);
+    let eng = CMPw.search(/[a-z]/);
+    let ENG = CMPw.search(/[A-Z]/);
+    let spe = CMPw.search(/[`~!@#$%^&*|\\\'\":;\/?]/);
+    let spc = CMPw.search(/\s/);
+
+
+
+    if (CMPw.length < 8 || CMPw.length > 16) {
+      pwResult1.style.color = "#ff0000";
+      pwResult1.innerHTML = "비밀번호는 8자리에서 16자리 이내로 입력해주세요.";
+      $('#pwvalue').val('NO');
+
+    } else if (spc >= 0) {
+      pwResult1.style.color = "#ff0000";
+      pwResult1.innerHTML = "비밀번호는 공백없이 입력해주세요.";
+      $('#pwvalue').val('NO');
+
+    } else if (num < 0 || eng < 0 || spe < 0 || ENG < 0) {
+      pwResult1.style.color = "#ff0000";
+      pwResult1.innerHTML = "대,소문자/특문/숫자를 혼합하여 입력해주세요.";
+      $('#pwvalue').val('NO');
+
+    } else {
+      pwResult1.style.color = "#0000ff";
+      pwResult1.innerHTML = "사용가능한 비밀번호 입니다.";
+      $('#pwvalue').val('YES');
+    }
+
+
+  }
+
+  function pwCheck() {
+
+    let CMPw = document.getElementById("CMPw").value;
+    let checkPw = document.getElementById("checkPw").value;
+    let pwResult2 = document.getElementById("pwResult2");
+
+    if (CMPw == checkPw) {
+      pwResult2.style.color = "#0000ff";
+      pwResult2.innerHTML = "비밀번호가 일치합니다.";
+      $('#pwcheckvalue').val('YES');
+    } else {
+      pwResult2.style.color = "#ff0000";
+      pwResult2.innerHTML = "비밀번호가 일치하지 않습니다.";
+      $('#pwcheckvalue').val('NO');
+    }
+
+
+  }
+
+
+
+  function checkConfirm() {
+    let CId = $('#idvalue').val();
+    let CPw = $('#pwvalue').val();
+    let CPwC = $('#pwcheckvalue').val();
+    let CEmail = $('#emailvalue').val();
+    let CBn = $('#bnvalue').val();
+    let conf = false;
+    if (CId != 'YES') {
+      alert('아이디를 확인해주세요');
+    } else if (CPw != 'YES' || CPwC != 'YES') {
+      alert('비밀번호를 확인해주세요!.');
+    } else if (CEmail != 'YES') {
+      alert('이메일 인증을 진행해주세요.');
+    } else if (CBn != 'YES') {
+      alert('사업자 인증을 진행해주세요.');
+    } else {
+      conf = true;
+    }
+    return conf;
+  }
+
+  function checkId() {
+
+    let MId = document.getElementById("MId").value;
+    // location.href = "idCheck?memId=" + memId;
+
+    let check1 = document.getElementById("check1");
+    let hangle = MId.search(/[ㄱ-ㅎ가-힣]/);
+    if(MId==""){
+      check1.innerHTML = "아이디를 입력해주세요";
+      check1.style.color = "#ff0000";
+      $('#idvalue').val('NO');
+    }else if(hangle>=0){
+      check1.innerHTML = "아이디에 한글을 사용할 수 없습니다.";
+      check1.style.color = "#ff0000";
+      $('#idvalue').val('NO');}
+    else {
+      $.ajax({
+        type: "POST",
+        url: "idoverlap",
+        data: {
+          "MId": MId
+        },
+        dataType: "text",
+        success: function (result) {
+          if (result == "OK") {
+            // 사용할 수 있는 아이디일 경우 실행
+            check1.innerHTML = MId + "는 사용가능한 아이디";
+            check1.style.color = "#0000ff";
+            $('#idvalue').val('YES');
+
+          } else {
+            // 사용할 수 없는 아이디일 경우 실행
+            check1.innerHTML = MId + "는 이미 사용중인 아이디";
+            check1.style.color = "#ff0000";
+            $('#idvalue').val('NO');
+          }
+        },
+        error: function () {
+          alert("idoverlap함수 통신실패!");
+
+        }
+
+      });
+
+    }
+  }
+
+  function checkEmail() {
+
+
+    let CMEmail = $("#CMEmail").val();
+    $.ajax({
+      type: "POST",
+      url: "PMCheckEmail",
+      data: {"PMEmail": CMEmail},
+      dataType: "text",
+      success: function (uuid) {
+        $("#confEmail").html("<br/><input type='text' id='uuidCheck' class='textForm'/>"
+                + " <input type='hidden' value='" + uuid + "' id='uuid'/>"
+                +"<a href=\"#\" onclick=\"checkEmail2()\">\n"
+                +"            <span></span>   \n"
+                +"            <span></span>\n"
+                +"            <span></span>\n"
+                +"            <span></span>\n"
+                +"            인증\n"
+                +"        </a>"
+        );
+      },
+      error: function () {
+        alert('이메일 인증 통신 실패!');
+      }
+    });
+  }
+
+
+
+
+  function checkEmail2() {
+    let uuid = $("#uuid").val();
+
+    let uuidCheck = $("#uuidCheck").val();
+
+
+    if (uuid == uuidCheck) {
+      alert('인증성공!');
+      document.getElementById('CMEmail').readOnly = true; // readonly 활성화
+      $('#emailvalue').val('YES');
+      $("#confEmail").html('');
+    } else {
+      alert('인증실패!');
+      $('#emailvalue').val('NO');
+    }
+
+  }
+
+</script>
+
+<script
+        src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script>
+  function sample6_execDaumPostcode() {
+    new daum.Postcode({
+      oncomplete: function (data) {
+        // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+        // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+        // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+        var addr = ''; // 주소 변수
+
+        //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+        if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+          addr = data.roadAddress;
+        } else { // 사용자가 지번 주소를 선택했을 경우(J)
+          addr = data.jibunAddress;
+        }
+
+
+        // 우편번호와 주소 정보를 해당 필드에 넣는다.
+        document.getElementById('sample6_postcode').value = data.zonecode;
+        document.getElementById("sample6_address").value = addr;
+        // 커서를 상세주소 필드로 이동한다.
+        document.getElementById("sample6_detailAddress").focus();
+      }
+    }).open();
+  }
+  function checkBN() {
+    var data = {
+      "b_no": [$("#CMBN").val()] // 사업자번호 "xxxxxxx" 로 조회 시,
+    };
+    $.ajax({
+      url: "https://api.odcloud.kr/api/nts-businessman/v1/status?serviceKey=H%2FL8izpb3%2BD8SxUwc1kiAYnvTS5A5tekcAiHvReecHoiebjvrLTp8KX2ypGShXsfytoU%2BkbFVjIBkwW%2BaQQTJA%3D%3D",  // serviceKey 값을 xxxxxx에 입력
+      type: "POST",
+      data: JSON.stringify(data), // json 을 string으로 변환하여 전송
+      dataType: "JSON",
+      contentType: "application/json",
+      accept: "application/json",
+      success: function(result) {
+        if(result.data[0].tax_type=="국세청에 등록되지 않은 사업자등록번호입니다."){
+          alert(result.data[0].tax_type);
+        }else{
+          alert("확인되었습니다.");
+          setbnro();
+          $("#BNSetValue").html('');
+          $('#bnvalue').val('YES');
+        }
+
+      },
+      error: function(result) {
+        console.log(result.responseText); //responseText의 에러메세지 확인
+      }
+    });
+  }
+  function setbnro(){
+    document.getElementById('CMBN').readOnly = true; // readonly 활성화
+  }
+</script>
+
+</html>

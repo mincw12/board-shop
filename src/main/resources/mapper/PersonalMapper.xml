@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- SQL Mapping -->
+<mapper namespace="com.icia.work.dao.PersonalDAO">
+    <select id="idoverlap" parameterType="String" resultType="String">
+        SELECT MID FROM VID WHERE MID=#{MId}
+    </select>
+
+    <insert id="PMJoin" parameterType="personal">
+        INSERT INTO PERSONAL_MEMBER VALUES (#{MId},#{PMPw},#{PMName},#{PMBirth},#{PMGender},#{PMPhone},#{PMEmail},#{PMAddr},#{PMProfileName},#{PMEdu},NULL,1,'개인')
+    </insert>
+
+
+    <select id="PMView" parameterType="String" resultType="personal">
+        SELECT * FROM PERSONAL_MEMBER WHERE MID=#{MId}
+    </select>
+
+    <update id="PMmodify" parameterType="personal">
+        UPDATE PERSONAL_MEMBER SET PMNAME=#{PMName}, PMBIRTH=#{PMBirth}, PMPHONE=#{PMPhone}, PMPROFILENAME=#{PMProfileName} WHERE MID = #{MId}
+    </update>
+
+    <delete id="pmDelete" parameterType="String">
+        DELETE FROM PERSONAL_MEMBER WHERE MID = #{MId}
+    </delete>
+
+    <select id="idfind" resultType="String" parameterType="String">
+        SELECT MID FROM PERSONAL_MEMBER WHERE PMEMAIL=#{PMEmail}
+    </select>
+    <select id="personal" parameterType="String" resultType="personal">
+        SELECT * FROM PERSONAL_MEMBER WHERE MID=#{MId}
+    </select>
+
+    <update id="UpdatePw" parameterType="personal">
+        UPDATE PERSONAL_MEMBER SET PMPW=#{PMPw} WHERE MID = #{MId}
+    </update>
+
+    <select id="personList" resultType="personal">
+        SELECT * FROM PERSONAL_MEMBER ORDER BY PMNAME DESC
+    </select>
+
+    <insert id="setSuspend" parameterType="suspend">
+        INSERT INTO  suspend VALUES (#{MId},#{suspendDays},TO_CHAR(SYSDATE, 'YYYYMMDD') ,#{suspendDate})
+    </insert>
+    <delete id="deletesuspend" parameterType="String">
+        DELETE suspend WHERE MID=#{MId}
+    </delete>
+    <select id="checkSuspend" parameterType="String" resultType="suspend">
+        SELECT * FROM SUSPEND WHERE MID=#{MId}
+    </select>
+
+    <select id="suspendList" resultType="suspend">
+        SELECT * FROM SUSPEND
+    </select>
+</mapper>
