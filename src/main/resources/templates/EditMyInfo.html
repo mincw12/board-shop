@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="/single/css/Modify.css">
+    <title>수정페이지</title>
+</head>
+
+
+<script
+        src="https://code.jquery.com/jquery-3.6.3.js"
+        integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
+        crossorigin="anonymous">
+</script>
+
+<div th:include="header.html"></div>
+<body class="animsition">
+
+<div class="ModifyWriteForm-table-div">
+
+    <form action="Modify" method="post" enctype="multipart/form-data"
+          class="ModifyWriteForm">
+
+        <table class="ModifyWriteForm-table">
+            <caption class="ModifyWriteForm-table-caption" style="caption-side: top;">회원수정</caption>
+
+            <tr class="ModifyWriteForm-tr">
+                <th class="ModifyWriteForm-th">아이디</th>
+                <td class="ModifyWriteForm-td">
+                    <input type="text" name="MId" th:value="${Modify.MId}" class="ModifyId" readonly/>
+                </td>
+            </tr>
+            <tr class="ModifyWriteForm-tr">
+                <th class="ModifyWriteForm-th">이름</th>
+                <td class="ModifyWriteForm-td">
+                    <input type="text" name="MName" th:value="${Modify.MName}" class="ModifyName"/></td>
+            </tr>
+
+            <tr class="ModifyWriteForm-tr">
+                <th class="ModifyWriteForm-th">생년월일</th>
+                <td class="ModifyWriteForm-td">
+                    <input type="date" name="MBirth" class="ModifyBirth"/>
+                </td>
+            </tr>
+
+            <tr class="ModifyWriteForm-tr">
+                <th class="ModifyWriteForm-th">이메일</th>
+                <td class="ModifyWriteForm-td">
+                    <input type="email" th:value="${Modify.MEmail}" class="ModifyEmail" readonly/>
+                </td>
+            </tr>
+
+            <tr class="ModifyWriteForm-tr">
+                <th class="ModifyWriteForm-th">연락처</th>
+                <td class="ModifyWriteForm-td">
+                    <input type="text" name="MPhone" th:value="${Modify.MPhone}" class="ModifyPhone"/></td>
+            </tr>
+
+            <tr class="ModifyWriteForm-tr">
+                <th class="ModifyWriteForm-th">프로필 사진</th>
+                <td class="ModifyWriteForm-td"><input type="file" name="MProfile"/>
+                    <input type="hidden" name="MProfileName" th:value="${Modify.MProfileName}" class="ModifyProfile"></td>
+            </tr>
+
+            <tr>
+                <th colspan="2">
+                    <input type="submit" value="수정" style="font-family: aggro02; margin-left: 100px;"/>
+                </th>
+            </tr>
+        </table>
+    </form>
+</div>
+<div th:include="footer.html"></div>
+</body>
+</html>

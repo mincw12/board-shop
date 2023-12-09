@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>SHOP-detail</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--===============================================================================================-->
+    <link rel="icon" type="image/png" href="boot/images/icons/favicon.png"/>
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="boot/vendor/perfect-scrollbar/perfect-scrollbar.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="single/css/shop.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="boot/css/util.css">
+    <link rel="stylesheet" type="text/css" href="boot/css/main.css">
+    <!--===============================================================================================-->
+</head>
+<body class="animsition">
+
+<div th:include="header.html"></div>
+<section class="bg-img1 txt-center p-lr-15 p-tb-92" style="background-image: url('/boot/images/bg-02.jpg');">
+    <h2 class="ltext-105 cl0 txt-center">
+        SHOP
+    </h2>
+</section>
+<div class="viewMain">
+    <div class="viewImg">
+        <img th:src='${NDetail.BImg}'>
+    </div>
+    <div class="viewComment">
+        <div class="bName"><p th:text="${NDetail.BName}"></p></div>
+        <div class="bComment"><p th:text="${NDetail.BDetail}"></p></div>
+        <div class="bCateGory"><p th:text="${NDetail.BGenre}"></p><br/></div>
+        <div class="bPrice"><p th:text="${NDetail.BPrice}">30,000</p></div>
+        <div class="BB"><button class="Basket" th:onclick="UpdateCookie([[${NDetail.BNo}]])">장바구니 추가</button>
+        <button class="Buy">구매</button>
+        </div>
+    </div>
+</div>
+<div th:include="footer.html"></div>
+
+<script>
+    var getCookie = function(name) {
+        var value = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
+
+        return value? value[2] : null;
+    };
+    var setCookie = function(name, value, exp) {
+        var date = new Date();
+        date.setTime(date.getTime() + exp*24*60*60*1000);
+        document.cookie = name + '=' + value + ';expires=' + date.toUTCString() + ';path=/';
+
+    };
+    function UpdateCookie(value){
+        console.log(value);
+        var shopping_basket = getCookie("shopping_basket");
+    if(shopping_basket==null){
+        setCookie("shopping_basket", value, 1);
+        alert("장바구니에 추가 됐습니다.");}
+    else {
+        setCookie("shopping_basket", shopping_basket+"/"+value, 1);
+        SetCart();
+        alert("장바구니에 추가 됐습니다.");
+    }
+    }
+
+    //쿠키 value 값을 배열로 바꾸고 정렬후 변경
+    function SetCart(){
+        var shopping_basket = getCookie("shopping_basket");
+        var Cart = SortCart(shopping_basket);
+        const set = new Set(Cart);
+        const basket = [...set];
+        setCookie("shopping_basket", basket.join('/'), 1);
+    }
+
+    //쿠키 value 값 배열로 변경
+    function SortCart(CookieValue){
+        const Cart = CookieValue.split('/');
+        Cart.sort(function (a, b) {
+            return a - b;
+        });
+        return Cart;
+    }
+
+    var deleteCookie = function(name) {
+        document.cookie = name + '=; expires=Thu, 01 Jan 1999 00:00:10 GMT;';
+    }
+    // deleteCookie(변수이름)
+   /* deleteCookie('name');*/
+
+</script>
+</body>
+</html>

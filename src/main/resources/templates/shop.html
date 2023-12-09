@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>SHOP</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--===============================================================================================-->
+    <link rel="icon" type="image/png" href="boot/images/icons/favicon.png"/>
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="boot/vendor/perfect-scrollbar/perfect-scrollbar.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="single/css/shop.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="boot/css/util.css">
+    <link rel="stylesheet" type="text/css" href="boot/css/main.css">
+    <!--===============================================================================================-->
+</head>
+<body class="animsition">
+<div th:include="header.html"></div>
+<!-- Title page -->
+<section class="bg-img1 txt-center p-lr-15 p-tb-92" style="background-image: url('/boot/images/bg-02.jpg');">
+    <h2 class="ltext-105 cl0 txt-center">
+        SHOP
+    </h2>
+</section>
+<div class="products">
+    <h3>보드 게임</h3>
+
+    <div class="product-list" id="board-list">
+        <a href="#" class="product">
+            <img src="https://bakey-api.codeit.kr/files/629/images/sunglasses.jpg" width="225">
+            <div class="product-name">
+                Sunglasses
+            </div>
+            <div class="product-price">
+                49,000
+            </div>
+        </a>
+        <div class="clearfix"></div>
+    </div>
+
+</div>
+
+<!-- Back to top -->
+<div class="btn-back-to-top" id="myBtn">
+		<span class="symbol-btn-back-to-top">
+			<i class="zmdi zmdi-chevron-up"></i>
+		</span>
+</div>
+<script>
+            function NAllList(){
+                $.ajax({
+                    type : 'post',
+                    url : '/NAllList',
+                    async : true,
+                    dataType : 'json',
+                    success : function(result) {
+                        console.log(result);
+                        const list = document.getElementById("board-list");
+                        let text="";
+                        for(let i of result){
+                        text+=" <a href=\"shopDetail?bNo="+i.bno+"\" class=\"product\">\n" +
+                            "            <img src=\""+i.bimg+"\" width=\"225\">\n" +
+                            "            <div class=\"product-name\">\n" +
+                            "                "+i.bname+"\n" +
+                            "            </div>\n" +
+                            "            <div class=\"product-price\">\n" +
+                            "                "+i.bprice+"원\n" +
+                            "            </div>\n" +
+                            "        </a>";}
+                        list.innerHTML=text;
+                    },
+                    error : function(request, status, error) {
+                        console.log(error)
+                    }
+                });
+            }
+            $(document).ready(function(){
+                NAllList();
+            });
+</script>
+<!--===============================================================================================-->
+<script src="boot/vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+<script src="boot/vendor/animsition/js/animsition.min.js"></script>
+<!--===============================================================================================-->
+<script src="boot/vendor/bootstrap/js/popper.js"></script>
+<script src="boot/vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+<script src="boot/vendor/select2/select2.min.js"></script>
+<script>
+    $(".js-select2").each(function(){
+        $(this).select2({
+            minimumResultsForSearch: 20,
+            dropdownParent: $(this).next('.dropDownSelect2')
+        });
+    })
+</script>
+<!--===============================================================================================-->
+<script src="boot/vendor/MagnificPopup/jquery.magnific-popup.min.js"></script>
+<!--===============================================================================================-->
+<script src="boot/vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+<script>
+    $('.js-pscroll').each(function(){
+        $(this).css('position','relative');
+        $(this).css('overflow','hidden');
+        var ps = new PerfectScrollbar(this, {
+            wheelSpeed: 1,
+            scrollingThreshold: 1000,
+            wheelPropagation: false,
+        });
+
+        $(window).on('resize', function(){
+            ps.update();
+        })
+    });
+</script>
+<!--===============================================================================================-->
+<script src="boot/js/main.js"></script>
+
+</body>
+</html>

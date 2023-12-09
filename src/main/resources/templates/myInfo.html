@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/single/css/myInfo.css">
+    <link rel="shortcut icon" href="/single/img/logo/Fab.ico" type="image/x-icon">
+    <title>프로필</title>
+
+</head>
+
+
+<div th:include="header.html"></div>
+<body class="animsition">
+
+<div class="myView-div">
+
+    <table class="pmMyView-table">
+
+        <caption class="myView-table-caption">내 프로필</caption>
+
+        <tr class="myView-tr">
+            <th class="myView-th">아이디</th>
+            <td class="myView-td" th:text="${member.MId}"></td>
+            <input type="hidden" th:value="${member.MId}" id="MId">
+        </tr>
+        <tr class="myView-tr">
+            <th class="myView-th">비밀번호</th>
+            <td class="myView-td"><span id="chPassWord"><button onclick="pwchange()">비밀번호 변경</button></span></td>
+        </tr>
+
+        <tr class="myView-tr">
+            <th class="myView-th">이름</th>
+            <td class="myView-td" th:text="${member.MName}"></td>
+        </tr>
+
+        <tr class="myView-tr">
+            <th class="myView-th">생년월일</th>
+            <td class="myView-td" th:text="${member.MBirth}"></td>
+        </tr>
+
+        <tr class="myView-tr">
+            <th class="myView-th">성별</th>
+            <td class="myView-td" th:text="${member.MGender}"></td>
+        </tr>
+
+        <tr class="myView-tr">
+            <th class="myView-th">이메일</th>
+            <td class="myView-td" th:text="${member.MEmail}"></td>
+        </tr>
+
+        <tr class="myView-tr">
+            <th class="myView-th">연락처</th>
+            <td class="myView-td" th:text="${member.MPhone}"></td>
+        </tr>
+
+        <!-- 카카오 주소 api 사용하기 -->
+        <tr class="myView-tr">
+            <th class="myView-th">주소</th>
+            <td class="myView-td" th:text="${member.MAddr}"></td>
+        </tr>
+
+        <tr class="myView-tr">
+            <th class="myView-th">프로필사진</th>
+            <td class="myView-td">
+                <img th:src="@{/userProfile/{profileName}(profileName=${member.MProfileName})}" width="200px"/>
+            </td>
+        </tr>
+
+        <tr class="myView-tr">
+            <th colspan="2">
+
+                <button th:onclick="|location.href='@{ModifyPage(MId=${member.MId})}'|"
+                        th:if="${session.login ne null  && member.MId ne 'admin' && session.login.MId eq member.MId}"
+                        class="modify-button">
+                    <i class="fa-solid fa-user-pen"></i>
+                    수정
+                </button>
+
+                <button th:if="${session.login ne null  && member.MId ne 'admin' && session.login.MId eq member.MId}" th:onclick="memD()" class="delete-button">
+                    <i class="fa-solid fa-user-slash"></i>
+                    탈퇴
+                </button>
+
+            </th>
+        </tr>
+
+    </table>
+
+</div>
+<div th:include="footer.html"></div>
+</body>
+
+<script src="single/js/myInfo.js"></script>
+<script
+        src="https://code.jquery.com/jquery-3.6.3.js"
+        integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
+        crossorigin="anonymous"></script>
+<script th:if="${session.login eq null ||(session.login.MId ne member.MId && session.member.MId ne 'admin')}">
+    alert('본인의 정보만 확인할 수 있습니다');
+    location.href = "/";
+</script>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>로그인</title>
+<link rel="stylesheet" type="text/css" href="single/css/loginPage.css">
+
+</head>
+<body class="animsition">
+<div th:include="header.html"></div>
+<div th:include="footer.html"></div>
+<div class="page">
+    <div class="container">
+        <div class="left">
+            <div class="login">Login</div>
+            <div class="eula">아이디가 없으십니까? <br/> 여기를 클릭해주세요 <a href="register">회원가입</a></div>
+        </div>
+        <div class="right">
+            <form action="MLogin" method="post">
+            <div class="form">
+                <label for="ID">ID</label>
+                <input type="text" id="ID" name="MId">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="MPw">
+                <input type="submit" id="submit" value="Submit">
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script src="single/js/loginPage.js"></script>
+</body>
+<script th:if="${loginfail ne null}">
+    alert('[[${loginfail}]]');
+</script>
+</html>

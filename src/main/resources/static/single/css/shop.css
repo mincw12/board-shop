@@ -1,0 +1,167 @@
+.navbar{
+    height: 60px;
+    padding-left: 30px;
+    padding-right: 30px;
+
+}
+
+.hero-header{
+    height: 450px;
+    background-image: url("https://bakey-api.codeit.kr/files/629/images/hero_header.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+}
+
+.navbar #logo{
+    line-height: 60px;
+}
+
+.navbar img{
+    vertical-align: top;
+    border: blanchedalmond 5px solid;
+}
+
+.navbar #menu{
+    float: right;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.navbar #menu li{
+    float: left;
+    margin-left: 50px;
+    line-height: 60px;
+}
+
+.navbar #menu li a{
+    color: #545454;
+    font-size: 13px;
+    text-decoration: none;
+}
+.product-list{
+    width: 735px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.products h3{
+    font-size: 24px;
+    color: #545454;
+    margin-top:60px;
+    margin-bottom: 60px;
+    text-align: center;
+}
+
+.product{
+    display: block;
+    width: 225px;
+    text-align: center;
+    text-decoration:none;
+    color: black;
+    float:left;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 30px;
+}
+
+.product-name{
+    margin-top: 20px;
+    margin-bottom: 4px;
+}
+
+.clearfix{
+    clear: both;
+}
+.footer{
+    text-align: center;
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+.footer a{
+    margin-left: 10px;
+    margin-right: 10px;
+    text-decoration:none;
+}
+.viewMain{
+    margin: 100px;
+    text-align: center;
+    align:center;
+
+}
+
+.viewImg{
+    width: 600px;
+    height: 700px;
+    margin: 20px;
+    border-radius: 15px;
+    display: inline-block;
+    background-position: left;
+    overflow:hidden;
+}
+.viewImg img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+.viewComment{
+    width: 1400px;
+    height: 700px;
+    margin: 20px;
+    display: inline-block;
+    background-position: center;
+    overflow:hidden;
+
+
+}
+.Basket{
+    display: inline-block;
+    padding: 15px 30px;
+    border-radius: 15px;
+    font-size: 20px;
+    font-family: "paybooc-Light", sans-serif;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.25s;
+    margin-right: 50px;
+    background-color: #6aafe6;
+    color: #d4dfe6;
+}
+.Buy{
+    display: inline-block;
+    padding: 15px 30px;
+    border-radius: 15px;
+    font-size: 20px;
+    font-family: "paybooc-Light", sans-serif;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.25s;
+    margin-left: 50px;
+    background-color: #405D9D;
+    color: #d4dfe6;
+}
+.bName{
+    font-weight:900;
+    height: 20%;
+    font-size: 50px;
+}
+.bComment{
+    height: 40%;
+    font-size: 15px;
+}
+.bCateGory{
+    font-weight:bold;
+    heigh: 15%;
+    font-size: 20px;
+}
+.bPrice{
+    font-weight:bolder;
+    height: 15%;
+    font-size: 30px;
+}
+.BB{
+    height:10%;
+}

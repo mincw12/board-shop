@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- SQL Mapping -->
+<mapper namespace="com.icia.work.dao.ShopDAO">
+    <select id="NShopList" resultType="nShop">
+        SELECT * FROM NShop
+    </select>
+    <select id="NDetail" parameterType="int" resultType="nShop">
+        SELECT * FROM NShop WHERE BNO=#{bNo}
+    </select>
+
+</mapper>

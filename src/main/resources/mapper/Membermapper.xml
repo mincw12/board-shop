@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- SQL Mapping -->
+<mapper namespace="com.icia.work.dao.MainDAO">
+    <select id="idoverlap" parameterType="String" resultType="String">
+        SELECT MID FROM PMEMBER WHERE MID=#{MId}
+    </select>
+    <insert id="mJoin" parameterType="member">
+        INSERT INTO PMEMBER VALUES (#{MId},#{MPw},0,#{MName},#{MBirth},#{MGender},#{MPhone},#{MEmail},#{MAddr},#{MProfileName},0)
+    </insert>
+    <select id="MyView" parameterType="String" resultType="member">
+        SELECT * FROM PMEMBER WHERE MID=#{MId}
+    </select>
+    <delete id="mDelete" parameterType="String">
+        DELETE FROM PMEMBER WHERE MID = #{MId}
+    </delete>
+
+    <update id="Modify" parameterType="member">
+        UPDATE PMEMBER SET MNAME=#{MName}, MBIRTH=#{MBirth}, MPHONE=#{MPhone}, MPROFILENAME=#{MProfileName} WHERE MID = #{MId}
+    </update>
+    <update id="setMPw" parameterType="member">
+        UPDATE PMEMBER SET MPW=#{MPw} WHERE MID = #{MId}
+    </update>
+</mapper>
