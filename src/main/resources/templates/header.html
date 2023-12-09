@@ -1,76 +1,503 @@
-<link rel="shortcut icon" href="/assets/img/logo/Fab.ico" type="image/x-icon">
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <html lang="ko" xmlns:th="http://www.thymeleaf.org">
-
-    <script src="https://kit.fontawesome.com/3624917c4f.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="/assets/css/header.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" rel="stylesheet">
-    <!-- 아이콘 사용 사이트 : https://fontawesome.com/v5/search?o=r&s=solid -->
-
-
-
-    <title>header</title>
-    <script src="assets/js/header.js" defer></script>
+    <link rel="icon" type="image/png" href="boot/images/icons/favicon.png"/>
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="boot/vendor/bootstrap/css/bootstrap.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="boot/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="boot/fonts/iconic/css/material-design-iconic-font.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="boot/fonts/linearicons-v1.0.0/icon-font.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="boot/vendor/animate/animate.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="boot/vendor/css-hamburgers/hamburgers.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="boot/vendor/animsition/css/animsition.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="boot/vendor/select2/select2.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="boot/vendor/daterangepicker/daterangepicker.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="boot/vendor/slick/slick.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="boot/vendor/MagnificPopup/magnific-popup.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="boot/vendor/perfect-scrollbar/perfect-scrollbar.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="boot/css/util.css">
+    <link rel="stylesheet" type="text/css" href="boot/css/main.css">
 </head>
 
-<header class="header">
+<!-- Header -->
+<header class="header-v2">
+    <!-- Header desktop -->
+    <div class="container-menu-desktop trans-03">
+        <div class="wrap-menu-desktop">
+            <nav class="limiter-menu-desktop p-l-45">
 
-    <link rel="shortcut icon" href="/assets/img/logo/Fab.ico" type="image/x-icon">
+                <!-- Logo desktop -->
+                <a href="index" class="logo">
+                    <img src="single/img/BoardST.png" alt="IMG-LOGO">
+                </a>
 
-<nav class="navbar">
+                <!-- Menu desktop -->
+                <div class="menu-desktop">
+                    <ul class="main-menu">
+                        <li class="active-menu">
+                            <a href="index">Home</a>
+                        </li>
 
-        <a href="index" class="web-name">
-            <img src="/assets/img/logo/ALABALogoWrite.png" class="alabaLogo"/>
-        </a>
+                        <li class="label1">
+                            <a href="shop" data-label1="hot">Shop</a>
+                            <ul class="sub-menu">
+                                <li><a href="shop">보드 게임</a></li>
+                                <li><a href="#">중고 보드 게임(구현중)</a></li>
+                                <li><a href="#">보드 게임 도구(구현중)</a></li>
+                                <li><a href="#">보드 게임 대여(구현중)</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="news">공지사항</a>
+                        </li>
 
-    <ul class="navbar__menu">
-        <li><a href="GuinList" class="header-menu">구인</a></li>
-        <li><a href="JobList" class="header-menu">구직</a></li>
-        <li><a href="NoticeList" class="header-menu">공지사항</a></li>
-        <li><a href="FAQList" class="header-menu">문의사항</a></li>
-        <li class="header-mobile"><a href="Login" class="header-mobile">로그인</a></li>
-        <li class="header-mobile"><a href="pmMyView" class="header-mobile">내 정보보기</a></li>
+                        <li>
+                            <a href="contact">문의사항</a>
+                        </li>
+                    </ul>
+                </div>
 
-<!--    <li><a href=""></a></li> -->
-    </ul>
-    <ul class="navbar__links">
+                <!-- Icon header -->
+                <div class="wrap-icon-header flex-w flex-r-m h-full">
+                    <div class="flex-c-m h-full p-r-24">
+                        <div class="icon-header-item cl2 hov-cl1 trans-04 p-lr-11 js-show-modal-search">
+                            <i class="zmdi zmdi-search"></i>
+                        </div>
+                    </div>
 
-        <ul class="navbar__links">
-            <li><a href="Login" class="login" th:if="${session.login eq null}">
-                <i class="fa-solid fa-user-check"></i> 로그인</a></li>
+                    <div class="flex-c-m h-full p-l-18 p-r-25 bor5" th:if="${session.login ne null}">
+                        <div class="icon-header-item cl2 hov-cl1 trans-04 p-lr-11 icon-header-noti js-show-cart" data-notify="2">
+                            <i class="zmdi zmdi-shopping-cart"></i>
+                        </div>
+                    </div>
+                    <div class="flex-c-m h-full p-l-18 p-r-25 bor5" th:if="${session.login eq null}">
+                        <div class="icon-header-item cl2 hov-cl1 trans-04 p-lr-11 ">
+                          <button onclick="location.href='login'"><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-person-lock" viewBox="0 0 16 16">
+                              <path d="M11 5a3 3 0 1 1-6 0 3 3 0 0 1 6 0ZM8 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4Zm0 5.996V14H3s-1 0-1-1 1-4 6-4c.564 0 1.077.038 1.544.107a4.524 4.524 0 0 0-.803.918A10.46 10.46 0 0 0 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h5ZM9 13a1 1 0 0 1 1-1v-1a2 2 0 1 1 4 0v1a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1v-2Zm3-3a1 1 0 0 0-1 1v1h2v-1a1 1 0 0 0-1-1Z"/>
+                          </svg></button>
+                        </div>
+                    </div>
+                    <div class="flex-c-m h-full p-l-18 p-r-25 bor5" th:if="${session.login ne null}">
+                        <div class="icon-header-item cl2 hov-cl1 trans-04 p-lr-11 ">
+                            <button th:onclick="|location.href='@{MyView(MId=${session.login.MId})}'|" ><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
+                                <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4Zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10Z"/>
+                            </svg></button></div>
+                        </div>
+                    </div>
 
-            <li><a href="PMJoin" class="join" th:if="${session.login eq null}">
-                <i class="fa-solid fa-user-plus"></i> 개인 회원가입</a></li>
+                    <div class="flex-c-m h-full p-lr-19">
+                        <div class="icon-header-item cl2 hov-cl1 trans-04 p-lr-11 js-show-sidebar">
+                            <i class="zmdi zmdi-menu"></i>
+                        </div>
+                    </div>
+            </nav>
+        </div>
+    </div>
 
-            <li><a href="CMJoin" class="join" th:if="${session.login eq null}">
-                <i class="fa-solid fa-building-circle-arrow-right"></i> 기업 회원가입</a></li>
+    <!-- Header Mobile -->
+    <div class="wrap-header-mobile">
+        <!-- Logo moblie -->
+        <div class="logo-mobile">
+            <a href="index"><img src="boot/images/icons/logo-01.png" alt="IMG-LOGO"></a>
+        </div>
 
-            <li><a th:href="@{pmMyView(MId=${session.login.MId})}" class="Logout"
-                   th:if="${session.login ne null && session.login.RType eq '개인'}">
-                <i class="fa-solid fa-user-gear"></i></i> [[${session.login.MId}]]</a></li>
+        <!-- Icon header -->
+        <div class="wrap-icon-header flex-w flex-r-m h-full m-r-15">
+            <div class="flex-c-m h-full p-r-10">
+                <div class="icon-header-item cl2 hov-cl1 trans-04 p-lr-11 js-show-modal-search">
+                    <i class="zmdi zmdi-search"></i>
+                </div>
+            </div>
 
-            <li><a href="Logout" class="Logout" th:if="${session.login ne null}">
-                <i class="fa-solid fa-user-xmark"></i> 로그아웃</a></li>
+            <div class="flex-c-m h-full p-lr-10 bor5">
+                <div class="icon-header-item cl2 hov-cl1 trans-04 p-lr-11 icon-header-noti js-show-cart" data-notify="2">
+                    <i class="zmdi zmdi-shopping-cart"></i>
+                </div>
+            </div>
+        </div>
 
-            <li><a th:href="@{cmMyView(MId=${session.login.MId})}" class="Logout"
-                   th:if="${session.login ne null && session.login.RType eq '기업'}">
-                <i class="fa-solid fa-building-user"></i> 내정보보기(기업)</a></li>
+        <!-- Button show menu -->
+        <div class="btn-show-menu-mobile hamburger hamburger--squeeze">
+				<span class="hamburger-box">
+					<span class="hamburger-inner"></span>
+				</span>
+        </div>
+    </div>
 
-            <li><a href="personList" class="pmList"
-                   th:if="${session.login ne null && session.login.MId eq 'admin'}">
-                <i class="fa-solid fa-user-gear"></i></i>회원목록(개인)</a></li>
 
-            <li><a href="companyList" class="cmList"
-                   th:if="${session.login ne null && session.login.MId eq 'admin'}">
-                <i class="fa-solid fa-user-gear"></i></i>회원목록(기업)</a></li>
+    <!-- Menu Mobile -->
+    <div class="menu-mobile">
+        <ul class="main-menu-m">
+            <li>
+                <a href="index">Home</a>
+                <span class="arrow-main-menu-m">
+						<i class="fa fa-angle-right" aria-hidden="true"></i>
+					</span>
+            </li>
+
+            <li class="label1">
+                <a href="shop" data-label1="hot">Shop</a>
+                <ul class="sub-menu">
+                    <li><a href="shop">보드 게임</a></li>
+                    <li><a href="#">중고 보드 게임(구현중)</a></li>
+                    <li><a href="#">보드 게임 도구(구현중)</a></li>
+                    <li><a href="#">보드 게임 대여(구현중)</a></li>
+                </ul>
+            </li>
+
+            <li>
+                <a href="news">공지사항</a>
+            </li>
+
+            <li>
+                <a href="login">로그인</a>
+            </li>
+
+            <li>
+                <a href="contact">문의사항</a>
+            </li>
         </ul>
+    </div>
 
-    </ul>
+    <!-- Modal Search -->
+    <div class="modal-search-header flex-c-m trans-04 js-hide-modal-search">
+        <div class="container-search-header">
+            <button class="flex-c-m btn-hide-modal-search trans-04 js-hide-modal-search">
+                <img src="boot/images/icons/icon-close2.png" alt="CLOSE">
+            </button>
 
-    <a href="#" class="navbar__toggleBtn"><i class="fas fa-bars"></i></a>
-
-</nav>
-
+            <form class="wrap-search-header flex-w p-l-15">
+                <button class="flex-c-m trans-04">
+                    <i class="zmdi zmdi-search"></i>
+                </button>
+                <input class="plh3" type="text" name="search" placeholder="Search...">
+            </form>
+        </div>
+    </div>
 </header>
-    </html>
+
+
+<!-- Sidebar -->
+<aside class="wrap-sidebar js-sidebar">
+    <div class="s-full js-hide-sidebar"></div>
+
+    <div class="sidebar flex-col-l p-t-22 p-b-25">
+        <div class="flex-r w-full p-b-30 p-r-27">
+            <div class="fs-35 lh-10 cl2 p-lr-5 pointer hov-cl1 trans-04 js-hide-sidebar">
+                <i class="zmdi zmdi-close"></i>
+            </div>
+        </div>
+
+        <div class="sidebar-content flex-w w-full p-lr-65 js-pscroll">
+            <ul class="sidebar-link w-full">
+                <li class="p-b-13">
+                    <a href="index" class="stext-102 cl2 hov-cl1 trans-04">
+                        Home
+                    </a>
+                </li>
+
+                <li class="p-b-13" th:if="${session.login ne null}">
+                    <a href="logout" class="stext-102 cl2 hov-cl1 trans-04">
+                        로그아웃
+                    </a>
+                </li>
+
+                <li class="p-b-13" th:if="${session.login ne null}">
+                    <a th:href="@{MyView(MId=${session.login.MId})}"  class="stext-102 cl2 hov-cl1 trans-04" >
+                        내 정보
+                    </a>
+                </li>
+
+                <li class="p-b-13">
+                    <a href="#" class="stext-102 cl2 hov-cl1 trans-04">
+                        Track Oder
+                    </a>
+                </li>
+
+                <li class="p-b-13">
+                    <a href="#" class="stext-102 cl2 hov-cl1 trans-04">
+                        Refunds
+                    </a>
+                </li>
+
+                <li class="p-b-13">
+                    <a href="contact" class="stext-102 cl2 hov-cl1 trans-04">
+                        문의사항
+                    </a>
+                </li>
+            </ul>
+
+            <div class="sidebar-gallery w-full p-tb-30">
+					<span class="mtext-101 cl5">
+						@ BoardST
+					</span>
+
+                <div class="flex-w flex-sb p-t-36 gallery-lb">
+                    <!-- item gallery sidebar -->
+                    <div class="wrap-item-gallery m-b-10">
+                        <a class="item-gallery bg-img1" href="boot/images/gallery-01.jpg" data-lightbox="gallery"
+                           style="background-image: url('/boot/images/gallery-01.jpg');"></a>
+                    </div>
+
+                    <!-- item gallery sidebar -->
+                    <div class="wrap-item-gallery m-b-10">
+                        <a class="item-gallery bg-img1" href="boot/images/gallery-02.jpg" data-lightbox="gallery"
+                           style="background-image: url('/boot/images/gallery-02.jpg');"></a>
+                    </div>
+
+                    <!-- item gallery sidebar -->
+                    <div class="wrap-item-gallery m-b-10">
+                        <a class="item-gallery bg-img1" href="boot/images/gallery-03.jpg" data-lightbox="gallery"
+                           style="background-image: url('/boot/images/gallery-03.jpg');"></a>
+                    </div>
+
+                    <!-- item gallery sidebar -->
+                    <div class="wrap-item-gallery m-b-10">
+                        <a class="item-gallery bg-img1" href="boot/images/gallery-04.jpg" data-lightbox="gallery"
+                           style="background-image: url('/boot/images/gallery-04.jpg');"></a>
+                    </div>
+
+                    <!-- item gallery sidebar -->
+                    <div class="wrap-item-gallery m-b-10">
+                        <a class="item-gallery bg-img1" href="boot/images/gallery-05.jpg" data-lightbox="gallery"
+                           style="background-image: url('/boot/images/gallery-05.jpg');"></a>
+                    </div>
+
+                    <!-- item gallery sidebar -->
+                    <div class="wrap-item-gallery m-b-10">
+                        <a class="item-gallery bg-img1" href="boot/images/gallery-06.jpg" data-lightbox="gallery"
+                           style="background-image: url('/boot/images/gallery-06.jpg');"></a>
+                    </div>
+
+                    <!-- item gallery sidebar -->
+                    <div class="wrap-item-gallery m-b-10">
+                        <a class="item-gallery bg-img1" href="boot/images/gallery-07.jpg" data-lightbox="gallery"
+                           style="background-image: url('/boot/images/gallery-07.jpg');"></a>
+                    </div>
+
+                    <!-- item gallery sidebar -->
+                    <div class="wrap-item-gallery m-b-10">
+                        <a class="item-gallery bg-img1" href="boot/images/gallery-08.jpg" data-lightbox="gallery"
+                           style="background-image: url('/boot/images/gallery-08.jpg');"></a>
+                    </div>
+
+                    <!-- item gallery sidebar -->
+                    <div class="wrap-item-gallery m-b-10">
+                        <a class="item-gallery bg-img1" href="boot/images/gallery-09.jpg" data-lightbox="gallery"
+                           style="background-image: url('/boot/images/gallery-09.jpg');"></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sidebar-gallery w-full">
+					<span class="mtext-101 cl5">
+						About Us
+					</span>
+
+                <p class="stext-108 cl6 p-t-27">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur maximus vulputate hendrerit. Praesent faucibus erat vitae rutrum gravida. Vestibulum tempus mi enim, in molestie sem fermentum quis.
+                </p>
+            </div>
+        </div>
+    </div>
+</aside>
+
+<!-- Cart -->
+<div class="wrap-header-cart js-panel-cart">
+    <div class="s-full js-hide-cart"></div>
+
+    <div class="header-cart flex-col-l p-l-65 p-r-25">
+        <div class="header-cart-title flex-w flex-sb-m p-b-8">
+				<span class="mtext-103 cl2">
+					장바구니
+				</span>
+
+            <div class="fs-35 lh-10 cl2 p-lr-5 pointer hov-cl1 trans-04 js-hide-cart">
+                <i class="zmdi zmdi-close"></i>
+            </div>
+        </div>
+
+        <div id="cartca" class="header-cart-content flex-w js-pscroll">
+
+        </div>
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js"></script>
+<!--===============================================================================================-->
+<!--===============================================================================================-->
+<script src="boot/vendor/animsition/js/animsition.min.js"></script>
+<!--===============================================================================================-->
+<script src="boot/vendor/bootstrap/js/popper.js"></script>
+<script src="boot/vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+<script src="boot/vendor/select2/select2.min.js"></script>
+<script>
+    $(".js-select2").each(function(){
+        $(this).select2({
+            minimumResultsForSearch: 20,
+            dropdownParent: $(this).next('.dropDownSelect2')
+        });
+    })
+</script>
+<!--===============================================================================================-->
+<script src="boot/vendor/daterangepicker/moment.min.js"></script>
+<script src="boot/vendor/daterangepicker/daterangepicker.js"></script>
+<!--===============================================================================================-->
+<script src="boot/vendor/slick/slick.min.js"></script>
+<script src="boot/js/slick-custom.js"></script>
+<!--===============================================================================================-->
+<script src="boot/vendor/parallax100/parallax100.js"></script>
+<script>
+    $('.parallax100').parallax100();
+</script>
+<!--===============================================================================================-->
+<script src="boot/vendor/MagnificPopup/jquery.magnific-popup.min.js"></script>
+<script>
+    var getCookie = function(name) {
+        var value = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
+
+        return value? value[2] : null;
+    };
+    $('.gallery-lb').each(function() { // the containers for all your galleries
+        $(this).magnificPopup({
+            delegate: 'a', // the selector for gallery item
+            type: 'image',
+            gallery: {
+                enabled:true
+            },
+            mainClass: 'mfp-fade'
+        });
+    });
+    window.onload=function (){
+        let list = document.getElementById('cartca');
+        var shopping_basket = getCookie("shopping_basket");
+        var cartList=SortCart(shopping_basket);
+        $.ajax({
+            type : 'post',
+            url : '/basketList',
+            async : true,
+            dataType : 'json',
+            data : {cartList : cartList},
+            success : function(result) {
+                let sum=0;
+                let text="<ul class=\"header-cart-wrapitem w-full\">\n";
+                for(let i of result){
+                    text+= "                <li class=\"header-cart-item flex-w flex-t m-b-12\">\n" +
+                        "                    <div class=\"header-cart-item-img\">\n" +
+                        "                        <img src=\""+i.bimg+"\" alt=\"IMG\">\n" +
+                        "                    </div>\n" +
+                        "\n" +
+                        "                    <div class=\"header-cart-item-txt p-t-8\">\n" +
+                        "                        <a href=\"#\" class=\"header-cart-item-name m-b-18 hov-cl1 trans-04\">\n" +
+                        i.bname +
+                        "                        </a>\n" +
+                        "\n" +
+                        "                        <span class=\"header-cart-item-info\">\n" +
+                        "\t\t\t\t\t\t\t\t "+i.bprice+"\n" +
+                        "\t\t\t\t\t\t\t</span>\n" +
+                        "                    </div>\n" +
+                        "                </li>\n" ;
+                    sum+=Number(i.bprice);
+                }
+                let total=sum.toString()
+                    .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+                text+= " </ul> <div class=\"w-full\">\n"+
+                    "               <div class=\"header-cart-total w-full p-tb-40\">\n" +
+                    "                    합계: "+total+"\n" +
+                    "                </div>\n"+
+                    "                <div class=\"header-cart-buttons flex-w w-full\">\n" +
+                    "                    <a href=\"shoping-cart.html\" class=\"flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-r-8 m-b-10\">\n" +
+                    "                        구매\n" +
+                    "                    </a>\n" +
+                    "\n" +
+                    "                    <a href=\"shoping-cart.html\" class=\"flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-b-10\">\n" +
+                    "                        확인\n" +
+                    "                    </a>\n" +
+                    "                </div>\n" +
+                    "            </div>";
+                list.innerHTML=text;
+            },
+            error : function(request, status, error) {
+                console.log(error)
+            }
+        });
+
+    }
+    function SortCart(CookieValue){
+        var Cart = CookieValue.split('/');
+        return Cart;
+    }
+</script>
+<!--===============================================================================================-->
+<script src="boot/vendor/isotope/isotope.pkgd.min.js"></script>
+<!--===============================================================================================-->
+<script src="boot/vendor/sweetalert/sweetalert.min.js"></script>
+<script>
+    $('.js-addwish-b2').on('click', function(e){
+        e.preventDefault();
+    });
+
+    $('.js-addwish-b2').each(function(){
+        var nameProduct = $(this).parent().parent().find('.js-name-b2').html();
+        $(this).on('click', function(){
+            swal(nameProduct, "is added to wishlist !", "success");
+
+            $(this).addClass('js-addedwish-b2');
+            $(this).off('click');
+        });
+    });
+
+    $('.js-addwish-detail').each(function(){
+        var nameProduct = $(this).parent().parent().parent().find('.js-name-detail').html();
+
+        $(this).on('click', function(){
+            swal(nameProduct, "is added to wishlist !", "success");
+
+            $(this).addClass('js-addedwish-detail');
+            $(this).off('click');
+        });
+    });
+
+    /*---------------------------------------------*/
+
+    $('.js-addcart-detail').each(function(){
+        var nameProduct = $(this).parent().parent().parent().parent().find('.js-name-detail').html();
+        $(this).on('click', function(){
+            swal(nameProduct, "is added to cart !", "success");
+        });
+    });
+</script>
+<!--===============================================================================================-->
+<script src="boot/vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+<script>
+    $('.js-pscroll').each(function(){
+        $(this).css('position','relative');
+        $(this).css('overflow','hidden');
+        var ps = new PerfectScrollbar(this, {
+            wheelSpeed: 1,
+            scrollingThreshold: 1000,
+            wheelPropagation: false,
+        });
+
+        $(window).on('resize', function(){
+            ps.update();
+        })
+    });
+</script>
+
+
+</html>

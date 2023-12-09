@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.icia</groupId>
-    <artifactId>ALABA</artifactId>
+    <artifactId>Single</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>work</name>
     <description>work</description>
